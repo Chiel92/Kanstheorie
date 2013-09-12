@@ -1,0 +1,160 @@
+%        File: wat_is_kans.tex
+%     Created: Sat Nov 24 02:00 PM 2012 C
+% Last Change: Sat Nov 24 02:00 PM 2012 C
+%
+\documentclass[a4paper]{report}
+\usepackage{amssymb,amsmath,amsthm,enumerate}
+\usepackage[dutch]{babel}
+
+\title{Inleiding Kansrekening \\ \small{Opgebouwd vanuit de intu\"itieve verzamelingenleer en de analyse}}
+\author{Chiel ten Brinke}
+
+\newtheorem{theorem}{Stelling}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Gevolg}
+\newtheorem{proposition}[theorem]{Propositie}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definitie}
+\newtheorem{example}[theorem]{Voorbeeld}
+\newtheorem{remark}[theorem]{Opmerking}
+
+
+\begin{document}
+\maketitle
+
+\chapter{Algemene Kansruimtes}
+Kansrekening is een directe toepassing van verzamelingenleer en analyse.
+Het fundamentele concept in de kansrekening is de zogenaamde \emph{kansruimte}.
+
+\section{Definitie Kansruimte}
+Een kansruimte kunnen we informeel beschouwen als een verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling 'waar is', zonder dat we weten welk element dat is.
+Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansfunctie} noemen.
+Deze kansfunctie noteren we vaak met $P$, en wordt ook wel kansverdeling of kansdistributie genoemd.
+Een kansfunctie voegt aan elke deelverzameling van de betreffende kansruimte de kans toe dat het element dat 'waar is' in die deelverzameling zit.
+In de praktijk hoeft een kansfunctie niet altijd volledig bekend te zijn.
+
+\begin{definition}
+	Een \emph{kansruimte} $\Omega$ is een verzameling met een \emph{kansfunctie} $P: \mathcal P(\Omega) \to [0,1]$  die aan de volgende eigenschappen voldoet.
+	\begin{enumerate}[i]
+		%\item Voor alle $X \subset \Omega$ geldt $P(X) \geq 0$.
+		%\item Als $\mathcal X$ een aftelbare partitie is van $\Omega$, dan $\sum_{X \in \mathcal X} P(X) = 1$.
+		\item Voor elke twee disjuncte $A,B \subset \Omega$ geldt $P(A \cup B) = P(A) + P(B)$.
+		\item $P(\Omega) = 1$.
+	\end{enumerate}
+\end{definition}
+
+Een uitdrukking van de vorm $P(X)$ spreken we uit als ``de kans op $X$''.
+Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
+
+\begin{proposition}[Verschilregel]
+	\label{verschilregel}
+	Laat $\Omega$ een kansruimte met kansfunctie $P$ en $B \subset A \subset \Omega$.
+	Dan $P(A - B) = P(A) - P(B)$.
+\end{proposition}
+\begin{proof}
+	We zien
+	\begin{align*}
+		P(A) 	&= P( (A - A \cap B) \cup (A \cap B) ) \\ 
+			&= P(A - A \cap B ) + P(A \cap B) & \text{definitie kansfunctie}
+	\end{align*}
+	zodat $P(A - A \cap B ) = P(A) - P(A \cap B) $.
+\end{proof}
+
+\begin{proposition}[Somregel]
+	\label{somregel}
+	Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B \subset \Omega$.
+	Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\end{proposition}
+\begin{proof}
+	De deelverzamelingen $A$ en $B$ zijn niet noodzakelijkerwijs disjunct, maar we kunnen $A \cup B$ wel schrijven als de vereniging van twee disjuncte verzamelingen.
+	Dus 
+	\begin{align*}
+		P(A \cup B) 	&= P( (A - A \cap B) \cup B) \\
+		&= P(A - A \cap B) + P(B)  & \text{definitie kansfunctie}\\
+		&= P(A) - P(A \cap B) + P(B) & \text{verschilregel, propositie \ref{verschilregel}}
+	\end{align*}
+	hetgeen de gevraagde identiteit bewijst.
+\end{proof}
+
+\begin{proposition}[Complementregel]
+    \label{complementregel}
+	Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$.
+    Dan $P(A^c) = 1 - P(A)$.
+\end{proposition}
+\begin{proof}
+    Er geldt $P(A^c) = P(\Omega - A)$.
+    Bovendien
+    \begin{align*}
+        1 &= P(\Omega) & \text{definitie kansfunctie}\\
+        &= P( (\Omega - A) \cup A) \\
+        &= P(\Omega - A) + P(A) & \text{definitie kansfunctie}
+    \end{align*}
+    Dus $P(A^c) = 1 - P(A)$.
+\end{proof}
+
+
+\section{Voorwaardelijke kans}
+
+Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansfunctie correct induceren.
+\begin{proposition}
+	Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$ een deelverzameling.
+	Dan is $A$ een kansruimte met kansfunctie $P_A(X) = \frac{P(X)}{P(A)}$.
+\end{proposition}
+\begin{proof}
+	We moeten laten zien dat $P_A$ aan de definitie van de kansfunctie voldoet.
+	Laat $X,Y \subset A$ twee disjuncte verzamelingen.
+	Er geldt nu ook dat $X,Y \subset \Omega$. 
+	Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
+	Dus $P_A$ is een kansfunctie en daarmee is $A$ een kansruimte.
+\end{proof}
+
+\section{Afbeeldingen van kansruimtes}
+Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
+
+\begin{proposition}
+    Laat $X$ een kansruimte met kansfunctie $P_X$ en $g: X \to Y$ een surjectieve functie.
+    Dan is $Y = g(X)$, met een kansfunctie $P_Y$ zodanig dat 
+    \[ P_X(A) = P_Y(g(A)) \]
+    voor alle $A \subset X$, opnieuw een kansruimte.
+\end{proposition}
+\begin{proof}
+    We moeten laten zien dat $P_Y$ aan de definitie van een kansfunctie voldoet.
+    Allereerst zien we dat $P_Y(Y) = P_Y(g(X)) = P_X(X) = 1$, dus $P_Y$ voldoet aan de eerste voorwaarde.
+
+    Merk nu op dat we elke deelverzameling van $Y$ kunnen schrijven als $g(A)$ voor zekere $A \subset X$. 
+    Laat nu $g(A),g(B) \subset Y$ twee disjuncte verzamelingen.
+    Dan zien we dat 
+    \begin{align*}
+        P_Y(g(A) \cup g(B)) &= P_Y(g(A \cup B)) \\
+                            &= P_X(A \cup B) \\
+                            &= P_X(A) + P_X(B) \\
+                            &= P_Y(g(A)) + P_Y(g(B))
+    \end{align*}
+
+\end{proof}
+
+
+\chapter{Specifieke kansruimtes}
+
+We zullen kansruimtes beschouwen waarbij we extra eigenschappen van de kansruimte en de bijbehorende kansfunctie veronderstellen.
+Bij het toepassen van kansrekening op concrete problemen, is er vaak meer bekend over kansverdelingen, zodat kennis van specifieke veelvoorkomende kansruimtes veel gebruikt kan worden.
+%Belangrijke verdelingen hebben een naam, zoals de Bernoulli verdeling en de binomiale verdeling.
+%
+%Bij een event A bestaande uit een opeenvolging van andere events, kunnen we A visualiseren door een boom diagram te tekenen.
+%Hierdoor kunnen we er intuitiever mee redeneren, zodat we vragen omtrent A makkelijker kunnen beantwoorden.
+%
+%Een willekeurige variabele is een kansruimte.
+%Men kan een (universele) kansruimte naar een andere kansruimte sturen via een functie.
+%Als een zekere kansruimte A 5 dobbelsteenworpen beschrijft, dan kunnen we een functie f: A->N definiëren die alle ogen optelt.
+%De resulterende kansruimte f(A) beschrijft dan het totaal aantal ogen.
+%
+%Een joint verdeling van kansruimtes A en B is het cartesisch product AxB.
+%Ook hierbij kunnen we verzamelingenleer nog steeds volledig gebruiken.
+%
+%Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we spreken over de 'verwachte waarde' van een kansruimte.
+%Dit is het gemiddelde van alle elementen, gewogen door kun kans.
+%Merk op dat een dergelijke kansruimte gevisualiseerd kan worden als deelverzameling van de reële as.
+\end{document}
+
+
