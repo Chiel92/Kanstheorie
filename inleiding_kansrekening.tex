@@ -55,7 +55,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \begin{proof}
     We zien
     \begin{align*}
-        P(A)    &= P( (A - A \cap B) \cup (A \cap B) ) \\ 
+        P(A)    &= P( (A - A \cap B) \cup (A \cap B) ) \\
                 &= P(A - A \cap B ) + P(A \cap B) & \text{definitie kansfunctie}
     \end{align*}
     zodat $P(A - A \cap B ) = P(A) - P(A \cap B) $.
@@ -68,7 +68,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \end{proposition}
 \begin{proof}
     De deelverzamelingen $A$ en $B$ zijn niet noodzakelijkerwijs disjunct, maar we kunnen $A \cup B$ wel schrijven als de vereniging van twee disjuncte verzamelingen.
-    Dus 
+    Dus
     \begin{align*}
         P(A \cup B)     &= P( (A - A \cap B) \cup B) \\
                         &= P(A - A \cap B) + P(B)  & \text{definitie kansfunctie}\\
@@ -93,9 +93,6 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     Dus $P(A^c) = 1 - P(A)$.
 \end{proof}
 
-
-\section{Voorwaardelijke kans}
-
 Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansfunctie correct induceren.
 \begin{proposition}
     Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$ een deelverzameling.
@@ -104,17 +101,68 @@ Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kans
 \begin{proof}
     We moeten laten zien dat $P_A$ aan de definitie van de kansfunctie voldoet.
     Laat $X,Y \subset A$ twee disjuncte verzamelingen.
-    Er geldt nu ook dat $X,Y \subset \Omega$. 
+    Er geldt nu ook dat $X,Y \subset \Omega$.
     Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
     Dus $P_A$ is een kansfunctie en daarmee is $A$ een kansruimte.
 \end{proof}
+
+
+\section{Voorwaardelijke kans}
+Nu kunnen we de notie van voorwaardelijke kans invoeren.
+Hierbij beperken we de kansfunctie tot een zekere deelverzameling.
+We kunnen dit interpreten alsof we weten dat het `ware element' in deze deelverzameling zit.
+\begin{definition}
+    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$ een deelverzameling.
+    Definieer $P(B|A) = P_A(B) = \frac{P(A \cap B)}{P(B)}$. Dit spreken we uit als `de kans van $B$ gegeven $A$'.
+\end{definition}
+
+\begin{definition}
+    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B \subset \Omega$ twee deelverzamelingen.
+    Dan heten $A$ en $B$ onafhankelijk als $P(A|B) = P(A)$.
+\end{definition}
+
+\begin{proposition}
+    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B \subset \Omega$ twee deelverzamelingen.
+    Er geldt $P(A \cap B) = P(A)P(B)$ precies dan als $A$ en $B$ onafhankelijk zijn.
+\end{proposition}
+\begin{proof}
+    Merk op dat de volgende vergelijkingen equivalent zijn.
+    \begin{align*}
+        P(A|B)                      &= P(A) \\
+        \frac{P(A \cap B)}{P(B)}    &= P(A) \\
+        P(A \cap B)                 &= P(A)P(B)
+    \end{align*}
+    Dit bewijst de gevraagde gelijkwaardigheid.
+\end{proof}
+
+Het kan ook zo zijn dat twee deelverzamelingen onafhankelijk zijn als we ze beperken tot een zekere derde deelverzameling.
+Dit noemen we voorwaardelijke onafhankelijkheid.
+\begin{definition}
+    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B,C \subset \Omega$ drie deelverzamelingen.
+    Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A \cap B|C) = P(A|C)P(B|C)$.
+\end{definition}
+
+\begin{proposition}
+    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B,C \subset \Omega$ drie deelverzamelingen,
+    Er geldt dat $P(A \cap B \cap C)P(C) = P(A \cap C)P(B \cap C)$ precies dan als $A$ en $B$ onafhankelijk zijn gegeven $C$.
+\end{proposition}
+\begin{proof}
+    Merk op dat de volgende vergelijkingen equivalent zijn.
+    \begin{align*}
+        P(A \cap B|C)                       &= P(A|C)P(B|C) \\
+        \frac{P(A \cap B \cap C)}{P(C)}     &= \frac{P(A \cap C)}{P(C)} \frac{P(B \cap C)}{P(C)} \\
+        P(A \cap B \cap C)P(C)              &= P(A \cap C)P(B \cap C)
+    \end{align*}
+    Dit bewijst de gevraagde gelijkwaardigheid.
+\end{proof}
+
 
 \section{Afbeeldingen van kansruimtes}
 Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
 
 \begin{proposition}
     Laat $X$ een kansruimte met kansfunctie $P_X$ en $g: X \to Y$ een surjectieve functie.
-    Dan is $Y = g(X)$, met een kansfunctie $P_Y$ zodanig dat 
+    Dan is $Y = g(X)$, met een kansfunctie $P_Y$ zodanig dat
     \[ P_X(A) = P_Y(g(A)) \]
     voor alle $A \subset X$, opnieuw een kansruimte.
 \end{proposition}
@@ -122,9 +170,9 @@ Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe ka
     We moeten laten zien dat $P_Y$ aan de definitie van een kansfunctie voldoet.
     Allereerst zien we dat $P_Y(Y) = P_Y(g(X)) = P_X(X) = 1$, dus $P_Y$ voldoet aan de eerste voorwaarde.
 
-    Merk nu op dat we elke deelverzameling van $Y$ kunnen schrijven als $g(A)$ voor zekere $A \subset X$. 
+    Merk nu op dat we elke deelverzameling van $Y$ kunnen schrijven als $g(A)$ voor zekere $A \subset X$.
     Laat nu $g(A),g(B) \subset Y$ twee disjuncte verzamelingen.
-    Dan zien we dat 
+    Dan zien we dat
     \begin{align*}
         P_Y(g(A) \cup g(B)) &= P_Y(g(A \cup B)) \\
                             &= P_X(A \cup B) \\
