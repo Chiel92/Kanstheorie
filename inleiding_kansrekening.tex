@@ -27,7 +27,7 @@
 Kansrekening is een directe toepassing van verzamelingenleer en analyse.
 Het fundamentele concept in de kansrekening is de zogenaamde \emph{kansruimte}.
 
-\section{Definitie Kansruimte}
+\section{Kansruimte}
 Een kansruimte kunnen we informeel beschouwen als een verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling `waar is', zonder dat we weten welk element dat is.
 Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansverdeling} noemen.
 Deze kansverdeling noteren we vaak met $P$, en wordt ook wel kansdistributie genoemd.
@@ -132,10 +132,18 @@ We kunnen dit interpreten alsof we weten dat het `ware element' in deze deelruim
     Dit bewijst de gevraagde gelijkwaardigheid.
 \end{proof}
 
+\begin{proposition}[De regel van Bayes]
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
+    Dan geldt $P(A|B) = \frac{P(B|A)P(A)}{P(B)}$.
+\end{proposition}
+\begin{proof}
+    Het bewijs is een opgave voor de lezer.
+\end{proof}
+
 Het kan ook zo zijn dat twee deelruimtes onafhankelijk zijn als we ze beperken tot een zekere derde deelruimte.
 Dit noemen we voorwaardelijke onafhankelijkheid.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimteen.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes.
     Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A \cap B|C) = P(A|C)P(B|C)$.
 \end{definition}
 
@@ -154,7 +162,24 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
 \end{proof}
 
 \section{Verzamelingen van kansruimtes}
-(\dots)
+We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimtes.
+
+\begin{proposition}[kettingregel]
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $(X_i), 0 \leq i \leq n$ een rij deelruimtes van $\Omega$.
+    Dan geldt $P(X_0 \cap \dots \cap X_n) = P(X_0|X_1 \cap \dots \cap X_n) \dots P(X_{n-1}|X_n)P(X_n)$.
+\end{proposition}
+\begin{proof}
+    Het bewijs is een opgave voor de lezer.
+\end{proof}
+
+\begin{proposition}[marginale kans]
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $X \subset \Omega$ een deelruimtes.
+    Laat bovendien $(Y_i), 0 \leq i \leq n$ een partitie van $\Omega$.
+    Dan geldt $P(X) = \sum_{i} P(X \cap Y_i)$.
+\end{proposition}
+\begin{proof}
+    Het bewijs is een opgave voor de lezer.
+\end{proof}
 
 \section{Afbeeldingen van kansruimtes}
 Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
@@ -178,7 +203,6 @@ Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe ka
                             &= P_X(A) + P_X(B) \\
                             &= P_Y(g(A)) + P_Y(g(B))
     \end{align*}
-
 \end{proof}
 
 
