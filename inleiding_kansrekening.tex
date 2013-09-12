@@ -29,49 +29,59 @@ Het fundamentele concept in de kansrekening is de zogenaamde \emph{kansruimte}.
 
 \section{Definitie Kansruimte}
 Een kansruimte kunnen we informeel beschouwen als een verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling `waar is', zonder dat we weten welk element dat is.
-Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansfunctie} noemen.
-Deze kansfunctie noteren we vaak met $P$, en wordt ook wel kansverdeling of kansdistributie genoemd.
-Een kansfunctie voegt aan elke deelverzameling van de betreffende kansruimte de kans toe dat het element dat `waar is' in die deelverzameling zit.
-In de praktijk hoeft een kansfunctie niet altijd volledig bekend te zijn.
+Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansverdeling} noemen.
+Deze kansverdeling noteren we vaak met $P$, en wordt ook wel kansdistributie genoemd.
+Een kansverdeling voegt aan elke deelverzameling van de betreffende kansruimte de kans toe dat het element dat `waar is' in die deelverzameling zit.
+In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
 
 \begin{definition}
-    Een \emph{kansruimte} $\Omega$ is een verzameling met een \emph{kansfunctie} $P: \mathcal P(\Omega) \to [0,1]$  die aan de volgende eigenschappen voldoet.
+    Een \emph{kansruimte} $\Omega$ is een verzameling met een \emph{kansverdeling} $P: \mathcal P(\Omega) \to [0,1]$  die aan de volgende eigenschappen voldoet.
     \begin{enumerate}[i]
-            %\item Voor alle $X \subset \Omega$ geldt $P(X) \geq 0$.
-            %\item Als $\mathcal X$ een aftelbare partitie is van $\Omega$, dan $\sum_{X \in \mathcal X} P(X) = 1$.
         \item Voor elke twee disjuncte $A,B \subset \Omega$ geldt $P(A \cup B) = P(A) + P(B)$.
         \item $P(\Omega) = 1$.
     \end{enumerate}
 \end{definition}
 
 Een uitdrukking van de vorm $P(X)$ spreken we uit als ``de kans op $X$''.
-Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
+Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansverdeling correct induceren.
+\begin{proposition}
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$ een deelverzameling.
+    Dan is $A$ een kansruimte met kansverdeling $P_A(X) = \frac{P(X)}{P(A)}$.
+\end{proposition}
+\begin{proof}
+    We moeten laten zien dat $P_A$ aan de definitie van de kansverdeling voldoet.
+    Laat $X,Y \subset A$ twee disjuncte verzamelingen.
+    Er geldt nu ook dat $X,Y \subset \Omega$.
+    Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
+    Dus $P_A$ is een kansverdeling en daarmee is $A$ een kansruimte.
+\end{proof}
 
+Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
 \begin{proposition}[Verschilregel]
     \label{verschilregel}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $B \subset A \subset \Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $B \subset A \subset \Omega$.
     Dan $P(A - B) = P(A) - P(B)$.
 \end{proposition}
 \begin{proof}
     We zien
     \begin{align*}
         P(A)    &= P( (A - A \cap B) \cup (A \cap B) ) \\
-                &= P(A - A \cap B ) + P(A \cap B) & \text{definitie kansfunctie}
+                &= P(A - A \cap B ) + P(A \cap B) & \text{definitie kansverdeling}
     \end{align*}
     zodat $P(A - A \cap B ) = P(A) - P(A \cap B) $.
 \end{proof}
 
 \begin{proposition}[Somregel]
     \label{somregel}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B \subset \Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$.
     Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 \end{proposition}
 \begin{proof}
-    De deelverzamelingen $A$ en $B$ zijn niet noodzakelijkerwijs disjunct, maar we kunnen $A \cup B$ wel schrijven als de vereniging van twee disjuncte verzamelingen.
+    De deelruimtes $A$ en $B$ zijn niet noodzakelijkerwijs disjunct, maar we kunnen $A \cup B$ wel schrijven als de vereniging van twee disjuncte verzamelingen.
     Dus
     \begin{align*}
         P(A \cup B)     &= P( (A - A \cap B) \cup B) \\
-                        &= P(A - A \cap B) + P(B)  & \text{definitie kansfunctie}\\
+                        &= P(A - A \cap B) + P(B)  & \text{definitie kansverdeling}\\
                         &= P(A) - P(A \cap B) + P(B) & \text{verschilregel, propositie~\ref{verschilregel}}
     \end{align*}
     hetgeen de gevraagde identiteit bewijst.
@@ -79,50 +89,37 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 
 \begin{proposition}[Complementregel]
     \label{complementregel}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$.
     Dan $P(A^c) = 1 - P(A)$.
 \end{proposition}
 \begin{proof}
     Er geldt $P(A^c) = P(\Omega - A)$.
     Bovendien
     \begin{align*}
-        1 &= P(\Omega) & \text{definitie kansfunctie}\\
+        1 &= P(\Omega) & \text{definitie kansverdeling}\\
           &= P( (\Omega - A) \cup A) \\
-          &= P(\Omega - A) + P(A) & \text{definitie kansfunctie}
+          &= P(\Omega - A) + P(A) & \text{definitie kansverdeling}
     \end{align*}
     Dus $P(A^c) = 1 - P(A)$.
-\end{proof}
-
-Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansfunctie correct induceren.
-\begin{proposition}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$ een deelverzameling.
-    Dan is $A$ een kansruimte met kansfunctie $P_A(X) = \frac{P(X)}{P(A)}$.
-\end{proposition}
-\begin{proof}
-    We moeten laten zien dat $P_A$ aan de definitie van de kansfunctie voldoet.
-    Laat $X,Y \subset A$ twee disjuncte verzamelingen.
-    Er geldt nu ook dat $X,Y \subset \Omega$.
-    Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
-    Dus $P_A$ is een kansfunctie en daarmee is $A$ een kansruimte.
 \end{proof}
 
 
 \section{Voorwaardelijke kans}
 Nu kunnen we de notie van voorwaardelijke kans invoeren.
-Hierbij beperken we de kansfunctie tot een zekere deelverzameling.
-We kunnen dit interpreten alsof we weten dat het `ware element' in deze deelverzameling zit.
+Hierbij beperken we de kansverdeling tot een zekere deelruimte.
+We kunnen dit interpreten alsof we weten dat het `ware element' in deze deelruimte zit.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A \subset \Omega$ een deelverzameling.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$ een deelruimte.
     Definieer $P(B|A) = P_A(B) = \frac{P(A \cap B)}{P(B)}$. Dit spreken we uit als `de kans van $B$ gegeven $A$'.
 \end{definition}
 
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B \subset \Omega$ twee deelverzamelingen.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
     Dan heten $A$ en $B$ onafhankelijk als $P(A|B) = P(A)$.
 \end{definition}
 
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B \subset \Omega$ twee deelverzamelingen.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
     Er geldt $P(A \cap B) = P(A)P(B)$ precies dan als $A$ en $B$ onafhankelijk zijn.
 \end{proposition}
 \begin{proof}
@@ -135,15 +132,15 @@ We kunnen dit interpreten alsof we weten dat het `ware element' in deze deelverz
     Dit bewijst de gevraagde gelijkwaardigheid.
 \end{proof}
 
-Het kan ook zo zijn dat twee deelverzamelingen onafhankelijk zijn als we ze beperken tot een zekere derde deelverzameling.
+Het kan ook zo zijn dat twee deelruimtes onafhankelijk zijn als we ze beperken tot een zekere derde deelruimte.
 Dit noemen we voorwaardelijke onafhankelijkheid.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B,C \subset \Omega$ drie deelverzamelingen.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimteen.
     Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A \cap B|C) = P(A|C)P(B|C)$.
 \end{definition}
 
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansfunctie $P$ en $A,B,C \subset \Omega$ drie deelverzamelingen,
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes,
     Er geldt dat $P(A \cap B \cap C)P(C) = P(A \cap C)P(B \cap C)$ precies dan als $A$ en $B$ onafhankelijk zijn gegeven $C$.
 \end{proposition}
 \begin{proof}
@@ -156,21 +153,23 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
     Dit bewijst de gevraagde gelijkwaardigheid.
 \end{proof}
 
+\section{Verzamelingen van kansruimtes}
+(\dots)
 
 \section{Afbeeldingen van kansruimtes}
 Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
 
 \begin{proposition}
-    Laat $X$ een kansruimte met kansfunctie $P_X$ en $g: X \to Y$ een surjectieve functie.
-    Dan is $Y = g(X)$, met een kansfunctie $P_Y$ zodanig dat
+    Laat $X$ een kansruimte met kansverdeling $P_X$ en $g: X \to Y$ een surjectieve functie.
+    Dan is $Y = g(X)$, met een kansverdeling $P_Y$ zodanig dat
     \[ P_X(A) = P_Y(g(A)) \]
     voor alle $A \subset X$, opnieuw een kansruimte.
 \end{proposition}
 \begin{proof}
-    We moeten laten zien dat $P_Y$ aan de definitie van een kansfunctie voldoet.
+    We moeten laten zien dat $P_Y$ aan de definitie van een kansverdeling voldoet.
     Allereerst zien we dat $P_Y(Y) = P_Y(g(X)) = P_X(X) = 1$, dus $P_Y$ voldoet aan de eerste voorwaarde.
 
-    Merk nu op dat we elke deelverzameling van $Y$ kunnen schrijven als $g(A)$ voor zekere $A \subset X$.
+    Merk nu op dat we elke deelruimte van $Y$ kunnen schrijven als $g(A)$ voor zekere $A \subset X$.
     Laat nu $g(A),g(B) \subset Y$ twee disjuncte verzamelingen.
     Dan zien we dat
     \begin{align*}
@@ -185,7 +184,7 @@ Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe ka
 
 \chapter{Specifieke kansruimtes}
 
-We zullen kansruimtes beschouwen waarbij we extra eigenschappen van de kansruimte en de bijbehorende kansfunctie veronderstellen.
+We zullen kansruimtes beschouwen waarbij we extra eigenschappen van de kansruimte en de bijbehorende kansverdeling veronderstellen.
 Bij het toepassen van kansrekening op concrete problemen, is er vaak meer bekend over kansverdelingen, zodat kennis van specifieke veelvoorkomende kansruimtes veel gebruikt kan worden.
 %Belangrijke verdelingen hebben een naam, zoals de Bernoulli verdeling en de binomiale verdeling.
 %
