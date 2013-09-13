@@ -27,6 +27,8 @@
 Kansrekening is een directe toepassing van verzamelingenleer en analyse.
 Het fundamentele concept in de kansrekening is de zogenaamde \emph{kansruimte}.
 
+
+
 \section{Kansruimte}
 Een kansruimte kunnen we informeel beschouwen als een verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling `waar is', zonder dat we weten welk element dat is.
 Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansverdeling} noemen.
@@ -104,6 +106,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \end{proof}
 
 
+
 \section{Voorwaardelijke kans}
 Nu kunnen we de notie van voorwaardelijke kans invoeren.
 Hierbij beperken we de kansverdeling tot een zekere deelruimte.
@@ -144,22 +147,26 @@ Het kan ook zo zijn dat twee deelruimtes onafhankelijk zijn als we ze beperken t
 Dit noemen we voorwaardelijke onafhankelijkheid.
 \begin{definition}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes.
-    Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A \cap B|C) = P(A|C)P(B|C)$.
+    Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A|B \cap C) = P(A|C)$.
 \end{definition}
 
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes,
-    Er geldt dat $P(A \cap B \cap C)P(C) = P(A \cap C)P(B \cap C)$ precies dan als $A$ en $B$ onafhankelijk zijn gegeven $C$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes.
+    Er geldt dat $P(A \cap B|C) = P(A|C)P(B|C)$ precies dan als $A$ en $B$ onafhankelijk zijn gegeven $C$.
 \end{proposition}
 \begin{proof}
     Merk op dat de volgende vergelijkingen equivalent zijn.
     \begin{align*}
         P(A \cap B|C)                       &= P(A|C)P(B|C) \\
         \frac{P(A \cap B \cap C)}{P(C)}     &= \frac{P(A \cap C)}{P(C)} \frac{P(B \cap C)}{P(C)} \\
-        P(A \cap B \cap C)P(C)              &= P(A \cap C)P(B \cap C)
+        P(A \cap B \cap C)P(C)              &= P(A \cap C)P(B \cap C) \\
+        P(A \cap B \cap C)P(B \cap C)       &= P(A \cap C)P(C) \\
+        P(A | B \cap C)                     &= P(A | C)
     \end{align*}
     Dit bewijst de gevraagde gelijkwaardigheid.
 \end{proof}
+
+
 
 \section{Verzamelingen van kansruimtes}
 We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimtes.
@@ -180,6 +187,8 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 \begin{proof}
     Het bewijs is een opgave voor de lezer.
 \end{proof}
+
+
 
 \section{Afbeeldingen van kansruimtes}
 Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
