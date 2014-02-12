@@ -5,9 +5,10 @@
 \documentclass[a4paper]{book}
 \usepackage{amssymb,amsmath,amsthm,enumerate}
 \usepackage[dutch]{babel}
+%\usepackage{color}
 
 \title{Inleiding Kansrekening \\ \small{Opgebouwd vanuit de intu\"itieve verzamelingenleer}}
-\author{Ch. B. ten Brinke}
+\author{Ch.\ ten Brinke}
 
 \newtheorem{theorem}{Stelling}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -18,6 +19,9 @@
 \newtheorem{definition}[theorem]{Definitie}
 \newtheorem{example}[theorem]{Voorbeeld}
 \newtheorem{remark}[theorem]{Opmerking}
+
+%\definecolor{foo}{rgb}{0.2,0.4,0.5}
+%\everymath{\color{foo}}
 
 
 \begin{document}
@@ -110,7 +114,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \section{Voorwaardelijke kans}
 Nu kunnen we de notie van voorwaardelijke kans invoeren.
 Hierbij beperken we de kansverdeling tot een zekere deelruimte.
-We kunnen dit interpreten alsof we weten dat het `ware element' in deze deelruimte zit.
+We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelruimte zit.
 \begin{definition}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$ een deelruimte.
     Definieer $P(B|A) = P_A(B) = \frac{P(A \cap B)}{P(B)}$. Dit spreken we uit als `de kans van $B$ gegeven $A$'.
@@ -188,8 +192,6 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
     Het bewijs is een opgave voor de lezer.
 \end{proof}
 
-
-
 \section{Afbeeldingen van kansruimtes}
 Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
 
@@ -215,10 +217,56 @@ Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe ka
 \end{proof}
 
 
-\chapter{Specifieke kansruimtes}
+\chapter{Stochastische variabelen}
+Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we een aantal observaties doen.
 
+\begin{definition}
+    Laat $X \subset \mathbb{R}$ een kansruimte met kansverdeling $P$.
+    Definieer $P(A) = 0$ voor alle $A \subset \mathbb{R}$ zodat $A \cap X = \emptyset$.
+    Neem aan dat $P$ differentieerbaar is.
+    Definieer verder $f(x) = \frac{\mathrm{d}P(x)}{\mathrm{d}x}$.
+    Dan heet $X$ een stochastische variabele of stochast, en $p: X \to \mathbb{R}$ de kansdichtheid van $X$.
+\end{definition}
+
+Als we weten dat een kansruimte een stochast is, kunnen spreken over de `verwachte waarde' van een kansruimte.
+Dit is het gemiddelde van alle elementen, gewogen door kun kans.
+
+\begin{definition}
+    Laat $X$ een stochast met kansdichtheid $p$.
+    Definieer \[ \mu(X) = \int_{-\infty}^{\infty} \! xp(x)  \, \mathrm{d}x \]
+    Dan heet $\mu(X)$ de verwachte waarde van $X$.
+\end{definition}
+
+\begin{proposition}
+    Als $X$ een eindige stochast is, dan geldt
+    \[ \mu(X) = \sum_{x \in X} xp(x)\]
+\end{proposition}
+\begin{proof}
+    Het bewijs is een opgave voor de lezer.
+\end{proof}
+
+We kunnen spreken over een standaard deviatie van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
+
+\begin{definition}
+    Laat $X$ een stochast met kansdichtheid $p$.
+    Definieer \[ \sigma(X) = \sqrt{\int_{-\infty}^{\infty} \! (x - \mu(x))^2 p(x)  \, \mathrm{d}x} \]
+    Dan heet $\sigma(X)$ de standaard deviatie van $X$.
+\end{definition}
+
+Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie gebruikt.
+
+\begin{definition}
+    Laat $X$ een stochast met kansdichtheid $p$.
+    Definieer \[ \sigma^2(X) = \int_{-\infty}^{\infty} \! (x - \mu(x))^2 p(x)  \, \mathrm{d}x \]
+    Dan heet $\sigma^2(X)$ de variantie van $X$.
+\end{definition}
+
+
+
+\chapter{Specifieke kansruimtes}
 We zullen kansruimtes beschouwen waarbij we extra eigenschappen van de kansruimte en de bijbehorende kansverdeling veronderstellen.
 Bij het toepassen van kansrekening op concrete problemen, is er vaak meer bekend over kansverdelingen, zodat kennis van specifieke veelvoorkomende kansruimtes veel gebruikt kan worden.
+
 %Belangrijke verdelingen hebben een naam, zoals de Bernoulli verdeling en de binomiale verdeling.
 %
 %Bij een event A bestaande uit een opeenvolging van andere events, kunnen we A visualiseren door een boom diagram te tekenen.
@@ -231,10 +279,6 @@ Bij het toepassen van kansrekening op concrete problemen, is er vaak meer bekend
 %
 %Een joint verdeling van kansruimtes A en B is het cartesisch product AxB.
 %Ook hierbij kunnen we verzamelingenleer nog steeds volledig gebruiken.
-%
-%Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we spreken over de 'verwachte waarde' van een kansruimte.
-%Dit is het gemiddelde van alle elementen, gewogen door kun kans.
-%Merk op dat een dergelijke kansruimte gevisualiseerd kan worden als deelverzameling van de reële as.
 \end{document}
 
 
