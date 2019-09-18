@@ -3,9 +3,9 @@
 % Last Change: Sat Nov 24 02:00 PM 2012 C
 %
 \documentclass[a4paper]{book}
-\usepackage{amssymb,amsmath,amsthm,enumerate}
+\usepackage{amssymb,amsmath,amsthm,enumerate,graphicx,float,lmodern,xparse, mathtools}
 \usepackage[dutch]{babel}
-%\usepackage{color}
+\usepackage{color}
 
 \title{Inleiding Kansrekening \\ \small{Opgebouwd vanuit de intu\"itieve verzamelingenleer}}
 \author{Ch.\ ten Brinke}
@@ -14,13 +14,22 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Gevolg}
 \newtheorem{proposition}[theorem]{Propositie}
+\newtheorem{exercise}[theorem]{Opgave}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definitie}
 \newtheorem{example}[theorem]{Voorbeeld}
 \newtheorem{remark}[theorem]{Opmerking}
 
-%\definecolor{foo}{rgb}{0.2,0.4,0.5}
+\NewDocumentCommand\set{mg}{%
+    \ensuremath{\left\lbrace #1 \IfNoValueTF{#2}{}{\, \middle|\, #2} \right\rbrace}%
+}
+\NewDocumentCommand\powerset{mg}{%
+    \ensuremath{\mathcal{P}(#1)}
+}
+
+
+%\definecolor{foo}{rgb}{0.3,0.0,0.3}
 %\everymath{\color{foo}}
 
 
@@ -56,15 +65,21 @@ Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kans
 \end{proposition}
 \begin{proof}
     We moeten laten zien dat $P_A$ aan de definitie van de kansverdeling voldoet.
-    Laat $X,Y \subset A$ twee disjuncte verzamelingen.
-    Er geldt nu ook dat $X,Y \subset \Omega$.
-    Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
+    \begin{enumerate}[i]
+        \item Laat $X,Y \subset A$ twee disjuncte verzamelingen.
+            Er geldt nu ook dat $X,Y \subset \Omega$.
+            Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
+        \item Verder geldt dat $P_A(A) = \frac{P(A)}{P(A)} = 1$.
+    \end{enumerate}
     Dus $P_A$ is een kansverdeling en daarmee is $A$ een kansruimte.
 \end{proof}
 
+\begin{exercise}
+    Laat zien dat de verzameling van mogelijke uitkomsten van het gooien van een zeszijdige dobbelsteen een kansruimte vormt met zes elementen.
+\end{exercise}
+
 Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
-\begin{proposition}[Verschilregel]
-    \label{verschilregel}
+\begin{proposition}[Verschilregel]\label{verschilregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $B \subset A \subset \Omega$.
     Dan $P(A - B) = P(A) - P(B)$.
 \end{proposition}
@@ -77,8 +92,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     zodat $P(A - A \cap B ) = P(A) - P(A \cap B) $.
 \end{proof}
 
-\begin{proposition}[Somregel]
-    \label{somregel}
+\begin{proposition}[Somregel]\label{somregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$.
     Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 \end{proposition}
@@ -93,8 +107,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     hetgeen de gevraagde identiteit bewijst.
 \end{proof}
 
-\begin{proposition}[Complementregel]
-    \label{complementregel}
+\begin{proposition}[Complementregel]\label{complementregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$.
     Dan $P(A^c) = 1 - P(A)$.
 \end{proposition}
@@ -109,6 +122,13 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     Dus $P(A^c) = 1 - P(A)$.
 \end{proof}
 
+
+\begin{exercise}
+    Zij $\Omega = \set{1,2,3,4,5}$ de verzameling van uitkomsten van het gooien van een vijfzijdige dobbelsteen,
+    i.e.\ $P(\set{x}) = \frac{1}{5}$ voor elke $x \in \Omega$.
+    Zij $A \subset \Omega$ de verzameling van oneven uitkomsten.
+    Bewijs dat $P(A) = \frac{3}{5}$.
+\end{exercise}
 
 
 \section{Voorwaardelijke kans}
