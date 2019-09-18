@@ -7,7 +7,7 @@
 \usepackage[dutch]{babel}
 \usepackage{color}
 
-\title{Inleiding Kansrekening \\ \small{Opgebouwd vanuit de intu\"itieve verzamelingenleer}}
+\title{Inleiding Eindige Kansrekening \\ \small{Opgebouwd vanuit de intu\"itieve verzamelingenleer}}
 \author{Ch.\ ten Brinke}
 
 \newtheorem{theorem}{Stelling}
@@ -39,21 +39,25 @@
 \chapter{Algemene Kansruimtes}
 Kansrekening is een directe toepassing van verzamelingenleer en analyse.
 Het fundamentele concept in de kansrekening is de zogenaamde \emph{kansruimte}.
+We zullen alleen eindige kansruimtes beschouwen, omdat dit genoeg intuitie verschaft over de formele constructie van kansrekening zonder dat het al te
+technisch wordt.
+Daarom duidt het woord kansruimte in het vervolg van dit document altijd een eindige kansruimte aan.
 
 
 
 \section{Kansruimte}
-Een kansruimte kunnen we informeel beschouwen als een verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling `waar is', zonder dat we weten welk element dat is.
+Een kansruimte kunnen we informeel beschouwen als een eindige verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling `waar is', zonder dat we weten welk element dat is.
 Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansverdeling} noemen.
 Deze kansverdeling noteren we vaak met $P$, en wordt ook wel kansdistributie genoemd.
 Een kansverdeling voegt aan elke deelverzameling van de betreffende kansruimte de kans toe dat het element dat `waar is' in die deelverzameling zit.
 In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
 
 \begin{definition}
-    Een \emph{kansruimte} $\Omega$ is een verzameling met een \emph{kansverdeling} $P: \mathcal P(\Omega) \to [0,1]$  die aan de volgende eigenschappen voldoet.
+    Een \emph{kansruimte} $\Omega$ is een eindige verzameling met een \emph{kansverdeling} $P: \mathcal P(\Omega) \to [0,1]$  die aan de volgende eigenschappen voldoet.
     \begin{enumerate}[i]
         \item Voor elke twee disjuncte $A,B \subset \Omega$ geldt $P(A \cup B) = P(A) + P(B)$.
         \item $P(\Omega) = 1$.
+        \item $P(X) \geq 0$ for all $X \subset \Omega$.
     \end{enumerate}
 \end{definition}
 
@@ -128,6 +132,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     i.e.\ $P(\set{x}) = \frac{1}{5}$ voor elke $x \in \Omega$.
     Zij $A \subset \Omega$ de verzameling van oneven uitkomsten.
     Bewijs dat $P(A) = \frac{3}{5}$.
+    Bewijs dat $P(A^c) = \frac{2}{5}$.
 \end{exercise}
 
 
@@ -152,14 +157,14 @@ We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelru
 \begin{proof}
     Merk op dat de volgende vergelijkingen equivalent zijn.
     \begin{align*}
-        P(A|B)                      &= P(A) \\
+        P(A|B)                      &= P(A) & \text{definitie onafhankelijkheid}\\
         \frac{P(A \cap B)}{P(B)}    &= P(A) \\
         P(A \cap B)                 &= P(A)P(B)
     \end{align*}
     Dit bewijst de gevraagde gelijkwaardigheid.
 \end{proof}
 
-\begin{proposition}[De regel van Bayes]
+\begin{proposition}[De regel van Bayes]\label{bayes}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
     Dan geldt $P(A|B) = \frac{P(B|A)P(A)}{P(B)}$.
 \end{proposition}
@@ -191,6 +196,38 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
 \end{proof}
 
 
+\begin{exercise}
+    Zij $\Omega = \set{1,\dots,20}$ de verzameling van uitkomsten van het gooien van een twintigzijdige dobbelsteen.
+    Zij $A \subset \Omega$ de verzameling van oneven uitkomsten.
+    Bereken de volgende uitdrukkingen.
+    \begin{enumerate}[a.]
+        \item $P(A)$
+        \item $P(\set{5}|A)$
+        \item $P(\set{1,\dots,10}|A)$
+        \item $P(A|\set{4})$
+        \item $P(A|\set{5})$
+        \item $P(A|\set{1,\dots,7})$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Wat is de kans om vier maal op een rij het getal 1 te gooien met een zeszijdige dobbelsteen?
+\end{exercise}
+
+\begin{exercise}
+    Bewijs Propositie~\ref{bayes}.
+\end{exercise}
+
+\begin{exercise}
+In een groep van 30 studenten, zeven hebben het huiswerk niet gemaakt. De docent kies willekeurig zes studenten.
+Wat is de kans dat tenminste vier van hen het huiswerk niet hebben gemaakt?
+\end{exercise}
+
+\begin{exercise}
+Er zitten 30 artikelen in een doos. Daarvan zijn er drie beschadigd.
+5 willekeurige artikelen worden uit de doos gehaald. Wat is de kans dat hoogstens twee daarvan beschadigd zijn?
+\end{exercise}
+
 
 \section{Verzamelingen van kansruimtes}
 We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimtes.
@@ -206,11 +243,12 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 \begin{proposition}[marginale kans]
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $X \subset \Omega$ een deelruimtes.
     Laat bovendien $(Y_i), 0 \leq i \leq n$ een partitie van $\Omega$.
-    Dan geldt $P(X) = \sum_{i} P(X \cap Y_i)$.
+    Dan geldt $P(X) = \sum_{i=0}^n P(X \cap Y_i)$.
 \end{proposition}
 \begin{proof}
     Het bewijs is een opgave voor de lezer.
 \end{proof}
+
 
 \section{Afbeeldingen van kansruimtes}
 Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
@@ -236,6 +274,10 @@ Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe ka
     \end{align*}
 \end{proof}
 
+\begin{exercise}
+\end{exercise}
+
+
 
 \chapter{Stochastische variabelen}
 Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we een aantal observaties doen.
@@ -244,7 +286,7 @@ Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen
     Laat $X \subset \mathbb{R}$ een kansruimte met kansverdeling $P$.
     Definieer $P(A) = 0$ voor alle $A \subset \mathbb{R}$ zodat $A \cap X = \emptyset$.
     Neem aan dat $P$ differentieerbaar is.
-    Definieer verder $f(x) = \frac{\mathrm{d}P(x)}{\mathrm{d}x}$.
+    Definieer verder $p(x) = \frac{\mathrm{d}P(x)}{\mathrm{d}x}$.
     Dan heet $X$ een stochastische variabele of stochast, en $p: X \to \mathbb{R}$ de kansdichtheid van $X$.
 \end{definition}
 
