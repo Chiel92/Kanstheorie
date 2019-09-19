@@ -53,27 +53,27 @@ Een kansverdeling voegt aan elke deelverzameling van de betreffende kansruimte d
 In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
 
 \begin{definition}
-    Een \emph{kansruimte} $\Omega$ is een eindige verzameling met een \emph{kansverdeling} $P: \mathcal P(\Omega) \to [0,1]$  die aan de volgende eigenschappen voldoet.
+    Een \emph{kansruimte} $\Omega$ is een eindige verzameling met een \emph{kansverdeling} $P: \powerset{\Omega} \to [0,1]$  die aan de volgende eigenschappen voldoet.
     \begin{enumerate}[i]
-        \item Voor elke twee disjuncte $A,B \subset \Omega$ geldt $P(A \cup B) = P(A) + P(B)$.
         \item $P(\Omega) = 1$.
-        \item $P(X) \geq 0$ for all $X \subset \Omega$.
+        \item $P(X) \geq 0$ voor alle $X \subseteq \Omega$.
+        \item Voor elke twee disjuncte $A,B \subseteq \Omega$ geldt $P(A \cup B) = P(A) + P(B)$.
     \end{enumerate}
 \end{definition}
 
 Een uitdrukking van de vorm $P(X)$ spreken we uit als ``de kans op $X$''.
 Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansverdeling correct induceren.
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$ een deelverzameling.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelverzameling.
     Dan is $A$ een kansruimte met kansverdeling $P_A(X) = \frac{P(X)}{P(A)}$.
 \end{proposition}
 \begin{proof}
     We moeten laten zien dat $P_A$ aan de definitie van de kansverdeling voldoet.
     \begin{enumerate}[i]
-        \item Laat $X,Y \subset A$ twee disjuncte verzamelingen.
-            Er geldt nu ook dat $X,Y \subset \Omega$.
+        \item Er geldt dat $P_A(A) = \frac{P(A)}{P(A)} = 1$.
+        \item Voor alle $X \subseteq A$ geldt dat $P_A(X) = \frac{P(X)}{P(A)} \geq 0$, want $P(X) \geq 0$.
+        \item Laat $X,Y \subseteq A$ twee disjuncte verzamelingen.
             Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
-        \item Verder geldt dat $P_A(A) = \frac{P(A)}{P(A)} = 1$.
     \end{enumerate}
     Dus $P_A$ is een kansverdeling en daarmee is $A$ een kansruimte.
 \end{proof}
@@ -84,7 +84,7 @@ Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kans
 
 Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
 \begin{proposition}[Verschilregel]\label{verschilregel}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $B \subset A \subset \Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $B \subseteq A \subseteq \Omega$.
     Dan $P(A - B) = P(A) - P(B)$.
 \end{proposition}
 \begin{proof}
@@ -97,7 +97,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \end{proof}
 
 \begin{proposition}[Somregel]\label{somregel}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$.
     Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 \end{proposition}
 \begin{proof}
@@ -112,7 +112,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \end{proof}
 
 \begin{proposition}[Complementregel]\label{complementregel}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$.
     Dan $P(A^c) = 1 - P(A)$.
 \end{proposition}
 \begin{proof}
@@ -130,7 +130,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \begin{exercise}
     Zij $\Omega = \set{1,2,3,4,5}$ de verzameling van uitkomsten van het gooien van een vijfzijdige dobbelsteen,
     i.e.\ $P(\set{x}) = \frac{1}{5}$ voor elke $x \in \Omega$.
-    Zij $A \subset \Omega$ de verzameling van oneven uitkomsten.
+    Zij $A \subseteq \Omega$ de verzameling van oneven uitkomsten.
     Bewijs dat $P(A) = \frac{3}{5}$.
     Bewijs dat $P(A^c) = \frac{2}{5}$.
 \end{exercise}
@@ -141,17 +141,17 @@ Nu kunnen we de notie van voorwaardelijke kans invoeren.
 Hierbij beperken we de kansverdeling tot een zekere deelruimte.
 We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelruimte zit.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subset \Omega$ een deelruimte.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelruimte.
     Definieer $P(B|A) = P_A(B) = \frac{P(A \cap B)}{P(B)}$. Dit spreken we uit als `de kans van $B$ gegeven $A$'.
 \end{definition}
 
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
     Dan heten $A$ en $B$ onafhankelijk als $P(A|B) = P(A)$.
 \end{definition}
 
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
     Er geldt $P(A \cap B) = P(A)P(B)$ precies dan als $A$ en $B$ onafhankelijk zijn.
 \end{proposition}
 \begin{proof}
@@ -165,7 +165,7 @@ We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelru
 \end{proof}
 
 \begin{proposition}[De regel van Bayes]\label{bayes}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subset \Omega$ twee deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
     Dan geldt $P(A|B) = \frac{P(B|A)P(A)}{P(B)}$.
 \end{proposition}
 \begin{proof}
@@ -175,12 +175,12 @@ We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelru
 Het kan ook zo zijn dat twee deelruimtes onafhankelijk zijn als we ze beperken tot een zekere derde deelruimte.
 Dit noemen we voorwaardelijke onafhankelijkheid.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelruimtes.
     Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A|B \cap C) = P(A|C)$.
 \end{definition}
 
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subset \Omega$ drie deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelruimtes.
     Er geldt dat $P(A \cap B|C) = P(A|C)P(B|C)$ precies dan als $A$ en $B$ onafhankelijk zijn gegeven $C$.
 \end{proposition}
 \begin{proof}
@@ -198,7 +198,7 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
 
 \begin{exercise}
     Zij $\Omega = \set{1,\dots,20}$ de verzameling van uitkomsten van het gooien van een twintigzijdige dobbelsteen.
-    Zij $A \subset \Omega$ de verzameling van oneven uitkomsten.
+    Zij $A \subseteq \Omega$ de verzameling van oneven uitkomsten.
     Bereken de volgende uitdrukkingen.
     \begin{enumerate}[a.]
         \item $P(A)$
@@ -241,7 +241,7 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 \end{proof}
 
 \begin{proposition}[marginale kans]
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $X \subset \Omega$ een deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $X \subseteq \Omega$ een deelruimtes.
     Laat bovendien $(Y_i), 0 \leq i \leq n$ een partitie van $\Omega$.
     Dan geldt $P(X) = \sum_{i=0}^n P(X \cap Y_i)$.
 \end{proposition}
@@ -250,32 +250,55 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 \end{proof}
 
 
-\section{Afbeeldingen van kansruimtes}
-Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
+\section{Functies op kansruimtes}
+Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
+
+\begin{definition}[morfisme]\label{morfisme}
+    Laat $X$ een kansruimte met kansverdeling $P_X$, $Y$ een verzameling en $g: \powerset{X} \to \powerset{Y}$ een surjectieve functie,
+    met de eigenschap dat voor elke $A \subseteq B \subseteq X$ geldt dat $g(A) \subseteq g(B) \subseteq Y$.
+    De functie $g$ heet een \emph{morfisme} van $X$ naar $Y$.
+    We defini\"eren de \emph{inverse} van $g$, genoteerd met $g^{-1}$, als volgt.
+    Voor $B \subseteq Y$, laat $A \subseteq X$ de grootste verzameling waarvoor $g(A) = B$.
+    Deze bestaat en is uniek (zie Opgave~\ref{uniciteit_morfisme_origineel}).
+    Dan definieren we $g^{-1}(B) = A$.
+\end{definition}
+
+\begin{exercise}\label{uniciteit_morfisme_origineel}
+    Laat $X$, $Y$ en $g$ zoals in Definitie~\ref{morfisme}.
+    Voor $B \subseteq Y$, laat $A \subseteq X$ de grootste verzameling waarvoor $g(A) = B$.
+    Bewijs $g^{-1}$ een functie is, i.e.\ dat $A$ bestaat en uniek is.
+\end{exercise}
 
 \begin{proposition}
-    Laat $X$ een kansruimte met kansverdeling $P_X$ en $g: X \to Y$ een surjectieve functie.
-    Dan is $Y = g(X)$, met een kansverdeling $P_Y$ zodanig dat
-    \[ P_X(A) = P_Y(g(A)) \]
-    voor alle $A \subset X$, opnieuw een kansruimte.
+    Er geldt dat $Y$ uit Definitie~\ref{morfisme} opnieuw een kansruimte is, met een kansverdeling $P_Y(B) = P_X(g^{-1}(B))$.
 \end{proposition}
 \begin{proof}
     We moeten laten zien dat $P_Y$ aan de definitie van een kansverdeling voldoet.
-    Allereerst zien we dat $P_Y(Y) = P_Y(g(X)) = P_X(X) = 1$, dus $P_Y$ voldoet aan de eerste voorwaarde.
 
-    Merk nu op dat we elke deelruimte van $Y$ kunnen schrijven als $g(A)$ voor zekere $A \subset X$.
-    Laat nu $g(A),g(B) \subset Y$ twee disjuncte verzamelingen.
-    Dan zien we dat
-    \begin{align*}
-        P_Y(g(A) \cup g(B)) &= P_Y(g(A \cup B)) \\
-                            &= P_X(A \cup B) \\
-                            &= P_X(A) + P_X(B) \\
-                            &= P_Y(g(A)) + P_Y(g(B))
-    \end{align*}
+    \begin{enumerate}[i]
+        \item Omdat $g$ surjectief is, zien we dat $P_Y(Y) = P_Y(g(X)) = P_X(X) = 1$.
+        \item Laat $B \subseteq Y$ en $A$ de grootste verzameling is waarvoor $g(A) = B$. Dan geldt dat $P_Y(B) = P_X(A) \geq 0$.
+        \item Laat $B_1,B_2 \subseteq Y$ twee disjuncte verzamelingen.
+            Laat $A_1,A_2 \subseteq X$ de respectievelijk grootste verzamelingen zodanig dat $g(A_1) = B_1$ en $g(A_2) = B_2$.
+            Dan geldt
+            \begin{align*}
+                P_Y(B_1 \cup B_2) &= P_Y(g(A_1 \cup A_2)) \\
+                                    &= P_X(A_1 \cup A_2) \\
+                                    &= P_X(A_1) + P_X(A_1) \\
+                                    &= P_Y(g(A_1)) + P_Y(g(A_2)) \\
+                                    &= P_Y(B_1) + P_Y(B_2)
+            \end{align*}
+    \end{enumerate}
 \end{proof}
 
-%\begin{exercise}
-%\end{exercise}
+\begin{exercise}
+Student A, B en C doen een drankje in de stad, en moeten bepalen wie er bobt.
+Ze komen overeen een munt op te gooien om te bepalen welk van de drie deze taak op zich zal nemen.
+Ze hebben echter maar 1 munt met 2 zijden, terwijl ze met 3 personen zijn. Student C stelt het volgende voor. De munt moet herhaaldelijk worden opgegooid
+totdat 1 van de volgende situaties zich voordoet: als er op enig moment tweemaal achtereenvolgens munt boven komt dan wint student A, als tweemaal
+achtereenvolgens kop boven komt wint student B, en als er eenmaal kop boven komt en direct daarna munt boven komt dan wint student C. Doet student A er
+verstandig aan akkoord te gaan met het voorstel van student C?
+\end{exercise}
 
 
 % TODO: maak alles eindig
@@ -284,8 +307,8 @@ Gegeven een kansruimte en een afbeelding op die kansruimte, kan er een nieuwe ka
 %Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we een aantal observaties doen.
 
 %\begin{definition}
-    %Laat $X \subset \mathbb{R}$ een kansruimte met kansverdeling $P$.
-    %Definieer $P(A) = 0$ voor alle $A \subset \mathbb{R}$ zodat $A \cap X = \emptyset$.
+    %Laat $X \subseteq \mathbb{R}$ een kansruimte met kansverdeling $P$.
+    %Definieer $P(A) = 0$ voor alle $A \subseteq \mathbb{R}$ zodat $A \cap X = \emptyset$.
     %Neem aan dat $P$ differentieerbaar is.
     %Definieer verder $p(x) = \frac{\mathrm{d}P(x)}{\mathrm{d}x}$.
     %Dan heet $X$ een stochastische variabele of stochast, en $p: X \to \mathbb{R}$ de kansdichtheid van $X$.
