@@ -27,6 +27,9 @@
 \NewDocumentCommand\powerset{mg}{%
     \ensuremath{\mathcal{P}(#1)}
 }
+\NewDocumentCommand\compl{mg}{%
+    \ensuremath{\bar{#1}}
+}
 
 
 %\definecolor{foo}{rgb}{0.3,0.0,0.3}
@@ -53,27 +56,27 @@ Een kansverdeling voegt aan elke deelverzameling van de betreffende kansruimte d
 In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
 
 \begin{definition}
-    Een \emph{kansruimte} $\Omega$ is een eindige verzameling met een \emph{kansverdeling} $P: \powerset{\Omega} \to [0,1]$  die aan de volgende eigenschappen voldoet.
+    Een \emph{kansruimte} $\Omega$ is een eindige verzameling met een \emph{kansverdeling} $P: \Omega \to [0,1]$  die aan de volgende eigenschappen voldoet.
     \begin{enumerate}[i]
-        \item $P(\Omega) = 1$.
-        \item $P(X) \geq 0$ voor alle $X \subseteq \Omega$.
-        \item Voor elke twee disjuncte $A,B \subseteq \Omega$ geldt $P(A \cup B) = P(A) + P(B)$.
+        \item $P(x) \geq 0$ voor alle $x \in \Omega$.
+        \item $\sum_{x \in \Omega}P(x) = 1$.
     \end{enumerate}
+
+    Een uitdrukking van de vorm $P(x)$ spreken we uit als ``de kans op $x$''.
+    Vaak willen we de kans van een deelverzameling van $\Omega$ uitdrukken, in plaats van de kans van een individueel element.
+    Daarom noteren we de kans van een deelverzameling $A \subseteq \Omega$ met $P(A) = \sum_{a \in A} P(a)$.
 \end{definition}
 
-Een uitdrukking van de vorm $P(X)$ spreken we uit als ``de kans op $X$''.
 Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansverdeling correct induceren.
 \begin{proposition}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelverzameling.
-    Dan is $A$ een kansruimte met kansverdeling $P_A(X) = \frac{P(X)}{P(A)}$.
+    Dan is $A$ een kansruimte met kansverdeling $P_A(a) = \frac{P(a)}{P(A)}$.
 \end{proposition}
 \begin{proof}
     We moeten laten zien dat $P_A$ aan de definitie van de kansverdeling voldoet.
     \begin{enumerate}[i]
-        \item Er geldt dat $P_A(A) = \frac{P(A)}{P(A)} = 1$.
-        \item Voor alle $X \subseteq A$ geldt dat $P_A(X) = \frac{P(X)}{P(A)} \geq 0$, want $P(X) \geq 0$.
-        \item Laat $X,Y \subseteq A$ twee disjuncte verzamelingen.
-            Dus \[ P_A(X \cup Y) = \frac{P(X \cup Y)}{P(A)} = \frac{P(X) + P(Y)}{P(A)} = \frac{P(X)}{P(A)} + \frac{P(Y)}{P(A)} = P_A(X) + P_A(Y) \]
+        \item Er geldt dat $\sum_{a \in A}P_A(a) = P_A(A) = \frac{P(A)}{P(A)} = 1$.
+        \item Voor alle $a \subseteq A$ geldt dat $P_A(a) = \frac{P(a)}{P(A)} \geq 0$, want $P(a) \geq 0$ en $P(A) \geq 0$.
     \end{enumerate}
     Dus $P_A$ is een kansverdeling en daarmee is $A$ een kansruimte.
 \end{proof}
@@ -83,47 +86,47 @@ Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kans
 \end{exercise}
 
 Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
+\begin{proposition}[Somregel]\label{somregel}
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$.
+    Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+    In het bijzonder $P(A \cup B) = P(A) + P(B)$ wanneer $A$ en $B$ disjunct zijn.
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        P(A \cup B)     &= \sum_{x \in A \cup B} P(x) & \text{definitie kansverdeling}\\
+                        &= \sum_{x \in A} P(x) + \sum_{x \in B} P(x) - \sum_{x \in A \cap B} P(x) \\
+                        &= P(A) + P(B) - P(A \cap B) \\
+    \end{align*}
+\end{proof}
+
 \begin{proposition}[Verschilregel]\label{verschilregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $B \subseteq A \subseteq \Omega$.
-    Dan $P(A - B) = P(A) - P(B)$.
+    Dan $P(A - B) = P(A) - P(A \cap B) $.
 \end{proposition}
 \begin{proof}
     We zien
     \begin{align*}
         P(A)    &= P( (A - A \cap B) \cup (A \cap B) ) \\
-                &= P(A - A \cap B ) + P(A \cap B) & \text{definitie kansverdeling}
+                &= P(A - A \cap B ) + P(A \cap B) & \text{somregel} \\
+                &= P(A - B) + P(A \cap B) \\
     \end{align*}
-    zodat $P(A - A \cap B ) = P(A) - P(A \cap B) $.
-\end{proof}
-
-\begin{proposition}[Somregel]\label{somregel}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$.
-    Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-\end{proposition}
-\begin{proof}
-    De deelruimtes $A$ en $B$ zijn niet noodzakelijkerwijs disjunct, maar we kunnen $A \cup B$ wel schrijven als de vereniging van twee disjuncte verzamelingen.
-    Dus
-    \begin{align*}
-        P(A \cup B)     &= P( (A - A \cap B) \cup B) \\
-                        &= P(A - A \cap B) + P(B)  & \text{definitie kansverdeling}\\
-                        &= P(A) - P(A \cap B) + P(B) & \text{verschilregel, propositie~\ref{verschilregel}}
-    \end{align*}
-    hetgeen de gevraagde identiteit bewijst.
+    dus $P(A - B) = P(A) - P(A \cap B) $.
 \end{proof}
 
 \begin{proposition}[Complementregel]\label{complementregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$.
-    Dan $P(A^c) = 1 - P(A)$.
+    Noteer met $\compl{A}$ het complement van $A$, i.e.\ $\Omega - A$.
+    Dan $P(\compl{A}) = 1 - P(A)$.
 \end{proposition}
 \begin{proof}
-    Er geldt $P(A^c) = P(\Omega - A)$.
+    Er geldt $P(\compl{A}) = P(\Omega - A)$.
     Bovendien
     \begin{align*}
         1 &= P(\Omega) & \text{definitie kansverdeling}\\
           &= P( (\Omega - A) \cup A) \\
-          &= P(\Omega - A) + P(A) & \text{definitie kansverdeling}
+          &= P(\Omega - A) + P(A) & \text{somregel}
     \end{align*}
-    Dus $P(A^c) = 1 - P(A)$.
+    Dus $P(\compl{A}) = 1 - P(A)$.
 \end{proof}
 
 
@@ -254,40 +257,31 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
 
 \begin{definition}[morfisme]\label{morfisme}
-    Laat $X$ een kansruimte met kansverdeling $P_X$, $Y$ een verzameling en $g: \powerset{X} \to \powerset{Y}$ een surjectieve functie,
-    met de eigenschap dat voor elke $A \subseteq B \subseteq X$ geldt dat $g(A) \subseteq g(B) \subseteq Y$.
-    De functie $g$ heet een \emph{morfisme} van $X$ naar $Y$.
-    We defini\"eren de \emph{inverse} van $g$, genoteerd met $g^{-1}$, als volgt.
-    Voor $B \subseteq Y$, laat $A \subseteq X$ de grootste verzameling waarvoor $g(A) = B$.
-    Deze bestaat en is uniek (zie Opgave~\ref{uniciteit_morfisme_origineel}).
-    Dan definieren we $g^{-1}(B) = A$.
+    Laat $X$ een kansruimte met kansverdeling $P_X$, $Y$ een verzameling en $\phi : X \to Y$ een surjectieve functie.
+    De functie $\phi$ heet een \emph{morfisme} van $X$ naar $Y$.
+
+    Omdat $\phi$ niet noodzakelijkerwijs injectief heeft deze niet altijd een inverse.
+    Echter, omdat $\phi$ surjectief is, kunnen we wel een pseudo-inverse defini\"eren die de elementen in $Y$ afbeeldt op de verzameling van alle originelen.
+    We defini\"eren daarom de pseudo-inverse van $\phi$, genoteerd met $\phi^{-1}$, als volgt.
+    Laat $\phi : Y \to \powerset{X}$ waarbij $\phi(y) = \set{x : \phi(X) = y}{x \in X}$.
 \end{definition}
 
-\begin{exercise}\label{uniciteit_morfisme_origineel}
-    Laat $X$, $Y$ en $g$ zoals in Definitie~\ref{morfisme}.
-    Voor $B \subseteq Y$, laat $A \subseteq X$ de grootste verzameling waarvoor $g(A) = B$.
-    Bewijs $g^{-1}$ een functie is, i.e.\ dat $A$ bestaat en uniek is.
-\end{exercise}
-
 \begin{proposition}
-    Er geldt dat $Y$ uit Definitie~\ref{morfisme} opnieuw een kansruimte is, met een kansverdeling $P_Y(B) = P_X(g^{-1}(B))$.
+    Er geldt dat $Y$ uit Definitie~\ref{morfisme} via de morfisme $\phi$ opnieuw een kansruimte is, met een kansverdeling $P_Y(y) = P_X(\phi^{-1}(y))$.
 \end{proposition}
 \begin{proof}
     We moeten laten zien dat $P_Y$ aan de definitie van een kansverdeling voldoet.
 
     \begin{enumerate}[i]
-        \item Omdat $g$ surjectief is, zien we dat $P_Y(Y) = P_Y(g(X)) = P_X(X) = 1$.
-        \item Laat $B \subseteq Y$ en $A$ de grootste verzameling is waarvoor $g(A) = B$. Dan geldt dat $P_Y(B) = P_X(A) \geq 0$.
-        \item Laat $B_1,B_2 \subseteq Y$ twee disjuncte verzamelingen.
-            Laat $A_1,A_2 \subseteq X$ de respectievelijk grootste verzamelingen zodanig dat $g(A_1) = B_1$ en $g(A_2) = B_2$.
-            Dan geldt
-            \begin{align*}
-                P_Y(B_1 \cup B_2) &= P_Y(g(A_1 \cup A_2)) \\
-                                    &= P_X(A_1 \cup A_2) \\
-                                    &= P_X(A_1) + P_X(A_1) \\
-                                    &= P_Y(g(A_1)) + P_Y(g(A_2)) \\
-                                    &= P_Y(B_1) + P_Y(B_2)
-            \end{align*}
+        \item Laat $y \in Y$. Dan geldt $P_Y(y) =  P_X(\phi^{-1}(y)) \geq 0$.
+        \item Per definitie weten we dat
+        \begin{align*}
+            P_Y(Y) &= \sum_{y \in Y} P_Y(y) \\
+                   &= \sum_{y \in Y} P_X(\phi^{-1}(y)) \\
+                   &= \sum_{y \in Y} \sum_{x \in \phi^{-1}(y)} P_X(x) \\
+        \end{align*}
+        Omdat $\phi$ een functie is weten we dat elk element uit $X$ precies eenmaal voorkomt in een zeker element uit het beeld van $\phi^{-1}$.
+        Dus \[ \sum_{y \in Y} \sum_{x \in \phi^{-1}(y)} P_X(x) = \sum_{x \in X} P_X(x) = P(X) = 1. \]
     \end{enumerate}
 \end{proof}
 
