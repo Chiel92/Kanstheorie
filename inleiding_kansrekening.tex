@@ -30,6 +30,7 @@
 \NewDocumentCommand\compl{mg}{%
     \ensuremath{\bar{#1}}
 }
+\newcommand{\reals}{\mathbb{R}}
 
 
 %\definecolor{foo}{rgb}{0.3,0.0,0.3}
@@ -63,6 +64,8 @@ In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
     \end{enumerate}
 
     Een uitdrukking van de vorm $P(x)$ spreken we uit als ``de kans op $x$''.
+    Als $P(x)$ hetzelfde is voor alle $x\in \Omega$, dan heet $P$ een \emph{uniforme verdeling}.
+
     Vaak willen we de kans van een deelverzameling van $\Omega$ uitdrukken, in plaats van de kans van een individueel element.
     Daarom noteren we de kans van een deelverzameling $A \subseteq \Omega$ met $P(A) = \sum_{a \in A} P(a)$.
 \end{definition}
@@ -88,8 +91,8 @@ Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kans
 Hieronder volgen een aantal handige resultaten, die direct met de definitie te bewijzen zijn.
 \begin{proposition}[Somregel]\label{somregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$.
-    Dan $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-    In het bijzonder $P(A \cup B) = P(A) + P(B)$ wanneer $A$ en $B$ disjunct zijn.
+    Dan geldt $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+    In het bijzonder geldt $P(A \cup B) = P(A) + P(B)$ wanneer $A$ en $B$ disjunct zijn.
 \end{proposition}
 \begin{proof}
     \begin{align*}
@@ -101,7 +104,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 
 \begin{proposition}[Verschilregel]\label{verschilregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $B \subseteq A \subseteq \Omega$.
-    Dan $P(A - B) = P(A) - P(A \cap B) $.
+    Dan geldt $P(A - B) = P(A) - P(A \cap B) $.
 \end{proposition}
 \begin{proof}
     We zien
@@ -116,7 +119,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 \begin{proposition}[Complementregel]\label{complementregel}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$.
     Noteer met $\compl{A}$ het complement van $A$, i.e.\ $\Omega - A$.
-    Dan $P(\compl{A}) = 1 - P(A)$.
+    Dan geldt $P(\compl{A}) = 1 - P(A)$.
 \end{proposition}
 \begin{proof}
     Er geldt $P(\compl{A}) = P(\Omega - A)$.
@@ -263,7 +266,10 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
     Omdat $\phi$ niet noodzakelijkerwijs injectief heeft deze niet altijd een inverse.
     Echter, omdat $\phi$ surjectief is, kunnen we wel een pseudo-inverse defini\"eren die de elementen in $Y$ afbeeldt op de verzameling van alle originelen.
     We defini\"eren daarom de pseudo-inverse van $\phi$, genoteerd met $\phi^{-1}$, als volgt.
-    Laat $\phi : Y \to \powerset{X}$ waarbij $\phi(y) = \set{x : \phi(X) = y}{x \in X}$.
+    Laat $\phi^{-1} : Y \to \powerset{X}$ waarbij $\phi^{-1}(y) = \set{x : \phi(X) = y}{x \in X}$.
+
+    Als $\phi$ bijectief is noemen we $\phi$ ook wel een \emph{isomorfisme}.
+    Als er een isomorfisme bestaat tussen twee kansruimtes $X$ en $Y$, dan noemen we $X$ en $Y$ isomorf.
 \end{definition}
 
 \begin{proposition}
@@ -285,6 +291,10 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
     \end{enumerate}
 \end{proof}
 
+
+\section{Cartesisch product tussen kansruimtes}
+
+
 %\begin{exercise}
 %Student A, B en C doen een drankje in de stad, en moeten bepalen wie er bobt.
 %Ze komen overeen een munt op te gooien om te bepalen welk van de drie deze taak op zich zal nemen.
@@ -297,49 +307,40 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
 
 % TODO: maak alles eindig
 
-%\chapter{Stochastische variabelen}
-%Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we een aantal observaties doen.
+\chapter{Stochastische variabelen}
+Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we bepaalde numerieke eigenschappen uitrekenen.
+Een stochastische variabele is een kansruimte samen met een morfisme naar een deelverzameling van $\reals$.
 
-%\begin{definition}
-    %Laat $X \subseteq \mathbb{R}$ een kansruimte met kansverdeling $P$.
-    %Definieer $P(A) = 0$ voor alle $A \subseteq \mathbb{R}$ zodat $A \cap X = \emptyset$.
-    %Neem aan dat $P$ differentieerbaar is.
-    %Definieer verder $p(x) = \frac{\mathrm{d}P(x)}{\mathrm{d}x}$.
-    %Dan heet $X$ een stochastische variabele of stochast, en $p: X \to \mathbb{R}$ de kansdichtheid van $X$.
-%\end{definition}
+\begin{definition}
+    Laat $\Omega$ een kansruimte met kansverdeling $P$, en laat $X \subseteq \reals$ en $\phi : \Omega \to X$ een morfisme.
+    Dan heet het paar $(\Omega,\phi)$ een \emph{stochastische variabele}, of \emph{stochast}.
+\end{definition}
 
-%Als we weten dat een kansruimte een stochast is, kunnen spreken over de `verwachte waarde' van een kansruimte.
-%Dit is het gemiddelde van alle elementen, gewogen door kun kans.
+Omdat we de elementen van een stochast in getallen kunnen uitdrukken, kunnen spreken de `verwachte waarde' van een stochast.
+Dit is het gemiddelde van alle elementen, gewogen door kun kans.
 
-%\begin{definition}
-    %Laat $X$ een stochast met kansdichtheid $p$.
-    %Definieer \[ \mu(X) = \int_{-\infty}^{\infty} \! xp(x)  \, \mathrm{d}x \]
-    %Dan heet $\mu(X)$ de verwachte waarde van $X$.
-%\end{definition}
+\begin{definition}
+    Laat $S = (\Omega,\phi)$ een stochast.
+    Definieer \[ \mu(S) = \sum_{x \in \Omega} \phi(x) \cdot P(x). \]
+    Dan heet $\mu(S)$ de verwachte waarde van $S$.
+\end{definition}
 
-%\begin{proposition}
-    %Als $X$ een eindige stochast is, dan geldt
-    %\[ \mu(X) = \sum_{x \in X} xp(x)\]
-%\end{proposition}
-%\begin{proof}
-    %Het bewijs is een opgave voor de lezer.
-%\end{proof}
+In andere literatuur wordt vaak het symbool $E$ gebruikt in plaats van $\mu$.
+We kunnen spreken over een standaard deviatie van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
 
-%We kunnen spreken over een standaard deviatie van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
+\begin{definition}
+    Laat $S = (\Omega,\phi)$ een stochast.
+    Definieer \[ \sigma(S) = \sum_{x \in \Omega} |\phi(x) - \mu(S)| \cdot P(x) \]
+    Dan heet $\sigma(S)$ de standaard deviatie van $S$.
+\end{definition}
 
-%\begin{definition}
-    %Laat $X$ een stochast met kansdichtheid $p$.
-    %Definieer \[ \sigma(X) = \sqrt{\int_{-\infty}^{\infty} \! (x - \mu(x))^2 p(x)  \, \mathrm{d}x} \]
-    %Dan heet $\sigma(X)$ de standaard deviatie van $X$.
-%\end{definition}
+Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie gebruikt.
 
-%Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie gebruikt.
-
-%\begin{definition}
-    %Laat $X$ een stochast met kansdichtheid $p$.
-    %Definieer \[ \sigma^2(X) = \int_{-\infty}^{\infty} \! (x - \mu(x))^2 p(x)  \, \mathrm{d}x \]
-    %Dan heet $\sigma^2(X)$ de variantie van $X$.
-%\end{definition}
+\begin{definition}
+    Laat $S = (\Omega,\phi)$ een stochast.
+    Definieer \[ \sigma^2(S) = \sum_{x \in \Omega} (\phi(x) - \mu(S))^2 \cdot P(x) \]
+    Dan heet $\sigma^2(S)$ de variantie van $S$.
+\end{definition}
 
 
 
