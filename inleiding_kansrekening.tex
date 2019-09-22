@@ -7,7 +7,7 @@
 \usepackage[dutch]{babel}
 \usepackage{color}
 
-\title{Inleiding Eindige Kansrekening \\ \small{Opgebouwd vanuit de intu\"itieve verzamelingenleer}}
+\title{Inleiding Eindige Kansrekening \\ \small{Opgebouwd vanuit de intu\"{\i}tieve verzamelingenleer}}
 \author{Ch.\ ten Brinke}
 
 \newtheorem{theorem}{Stelling}
@@ -41,19 +41,24 @@
 \maketitle
 
 \chapter{Algemene Kansruimtes}
-Kansrekening is een directe toepassing van verzamelingenleer en analyse.
-Het fundamentele concept in de kansrekening is de zogenaamde \emph{kansruimte}.
+Kansrekening is gemakkelijk op te bouwen vanuit verzamelingenleer en functies op deze verzamelingen.
+We veronderstellen dat de lezer bekend is met deze concepten.
+
+Het fundamentele begrip in de kansrekening is de zogenaamde \emph{kansruimte}.
 We zullen alleen eindige kansruimtes beschouwen, omdat dit genoeg intuitie verschaft over de formele constructie van kansrekening zonder dat het al te
 technisch wordt.
-Daarom duidt het woord kansruimte in het vervolg van dit document altijd een eindige kansruimte aan.
-
+Bovendien zal in de praktijk, e.g.\ bij het beoefenen van statistische analyses, men altijd te maken hebben met eindige kansruimtes.
+Immers, alles waar we in het dagelijks leven mee te maken hebben is eindig van aard.
+Daarom duidt het woord kansruimte in het vervolg van dit document altijd een eindige kansruimte aan, en zullen oneindige kansruimtes niet centraal
+staan.
 
 
 \section{Kansruimte}
-Een kansruimte kunnen we informeel beschouwen als een eindige verzameling, waarbij we veronderstellen dat er precies \'e\'en element van deze verzameling `waar is', zonder dat we weten welk element dat is.
-Op de machtsverzameling van de kansruimte is een zekere functie gedefinieerd, die we de \emph{kansverdeling} noemen.
-Deze kansverdeling noteren we vaak met $P$, en wordt ook wel kansdistributie genoemd.
-Een kansverdeling voegt aan elke deelverzameling van de betreffende kansruimte de kans toe dat het element dat `waar is' in die deelverzameling zit.
+Een kansruimte kunnen we informeel beschouwen als een eindige verzameling van mogelijke uitkomsten van een experiment.
+Hierbij veronderstellen we dat er precies \'e\'en uitkomst van deze verzameling `waar is', zonder dat we weten welke dat is.
+Op deze kansruimte is een zekere functie gedefinieerd, die we de \emph{kansverdeling} noemen.
+Deze kansverdeling noteren we vaak met $P$.
+Een kansverdeling voegt aan elk element van de betreffende kansruimte de kans toe dat deze uitkomst waar is.
 In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
 
 \begin{definition}
@@ -70,19 +75,8 @@ In de praktijk hoeft een kansverdeling niet altijd volledig bekend te zijn.
     Daarom noteren we de kans van een deelverzameling $A \subseteq \Omega$ met $P(A) = \sum_{a \in A} P(a)$.
 \end{definition}
 
-Een deelverzameling van een kansruimte is opnieuw een kansruimte, als we de kansverdeling correct induceren.
-\begin{proposition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelverzameling.
-    Dan is $A$ een kansruimte met kansverdeling $P_A(a) = \frac{P(a)}{P(A)}$.
-\end{proposition}
-\begin{proof}
-    We moeten laten zien dat $P_A$ aan de definitie van de kansverdeling voldoet.
-    \begin{enumerate}[i]
-        \item Er geldt dat $\sum_{a \in A}P_A(a) = P_A(A) = \frac{P(A)}{P(A)} = 1$.
-        \item Voor alle $a \subseteq A$ geldt dat $P_A(a) = \frac{P(a)}{P(A)} \geq 0$, want $P(a) \geq 0$ en $P(A) \geq 0$.
-    \end{enumerate}
-    Dus $P_A$ is een kansverdeling en daarmee is $A$ een kansruimte.
-\end{proof}
+De elementen van een kansruimte worden informeel \emph{uitkomsten} genoemd, en verzamelingen van uitkomsten worden informeel \emph{gebeurtenissen}
+genoemd.
 
 \begin{exercise}
     Laat zien dat de verzameling van mogelijke uitkomsten van het gooien van een zeszijdige dobbelsteen een kansruimte vormt met zes elementen.
@@ -138,14 +132,14 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     i.e.\ $P(\set{x}) = \frac{1}{5}$ voor elke $x \in \Omega$.
     Zij $A \subseteq \Omega$ de verzameling van oneven uitkomsten.
     Bewijs dat $P(A) = \frac{3}{5}$.
-    Bewijs dat $P(A^c) = \frac{2}{5}$.
+    Bewijs dat $P(\compl{A}) = \frac{2}{5}$.
 \end{exercise}
 
 
 \section{Voorwaardelijke kans}
 Nu kunnen we de notie van voorwaardelijke kans invoeren.
 Hierbij beperken we de kansverdeling tot een zekere deelruimte.
-We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelruimte zit.
+We kunnen dit interpreteren alsof we weten dat ware uitkomst in deze deelruimte zit.
 \begin{definition}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelruimte.
     Definieer $P(B|A) = P_A(B) = \frac{P(A \cap B)}{P(B)}$. Dit spreken we uit als `de kans van $B$ gegeven $A$'.
@@ -156,7 +150,7 @@ We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelru
     Dan heten $A$ en $B$ onafhankelijk als $P(A|B) = P(A)$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[Productregel]
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
     Er geldt $P(A \cap B) = P(A)P(B)$ precies dan als $A$ en $B$ onafhankelijk zijn.
 \end{proposition}
@@ -178,7 +172,37 @@ We kunnen dit interpreteren alsof we weten dat het `ware element' in deze deelru
     Het bewijs is een opgave voor de lezer.
 \end{proof}
 
+\begin{exercise}
+    Zij $\Omega = \set{1,\dots,20}$ de verzameling van uitkomsten van het gooien van een twintigzijdige dobbelsteen.
+    Zij $A \subseteq \Omega$ de verzameling van oneven uitkomsten.
+    Bereken de volgende uitdrukkingen.
+    \begin{enumerate}[a.]
+        \item $P(A)$
+        \item $P(\set{5}|A)$
+        \item $P(\set{1,\dots,10}|A)$
+        \item $P(A|\set{4})$
+        \item $P(A|\set{5})$
+        \item $P(A|\set{1,\dots,7})$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Bewijs Propositie~\ref{bayes}.
+\end{exercise}
+
+\begin{exercise}
+In een groep van 30 studenten, zeven hebben het huiswerk niet gemaakt. De docent kies willekeurig zes studenten.
+Wat is de kans dat tenminste vier van hen het huiswerk niet hebben gemaakt?
+\end{exercise}
+
+\begin{exercise}
+Er zitten 30 artikelen in een doos. Daarvan zijn er drie beschadigd.
+5 willekeurige artikelen worden uit de doos gehaald. Wat is de kans dat hoogstens twee daarvan beschadigd zijn?
+\end{exercise}
+
+
 Het kan ook zo zijn dat twee deelruimtes onafhankelijk zijn als we ze beperken tot een zekere derde deelruimte.
+Of met andere woorden, dat twee gebeurtenissen onafhankelijk zijn gegeven een derde gebeurtenis.
 Dit noemen we voorwaardelijke onafhankelijkheid.
 \begin{definition}
     Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelruimtes.
@@ -202,36 +226,30 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
 \end{proof}
 
 
-\begin{exercise}
-    Zij $\Omega = \set{1,\dots,20}$ de verzameling van uitkomsten van het gooien van een twintigzijdige dobbelsteen.
-    Zij $A \subseteq \Omega$ de verzameling van oneven uitkomsten.
-    Bereken de volgende uitdrukkingen.
-    \begin{enumerate}[a.]
-        \item $P(A)$
-        \item $P(\set{5}|A)$
-        \item $P(\set{1,\dots,10}|A)$
-        \item $P(A|\set{4})$
-        \item $P(A|\set{5})$
-        \item $P(A|\set{1,\dots,7})$
-    \end{enumerate}
-\end{exercise}
+\section{Product tussen kansruimtes}
+Als we nu twee kansruimtes $X$ en $Y$ hebben met elk hun eigen ware uitkomst, en we deze ruimtes tegelijk beschouwen, dan is er precies \'e\'en
+paar met elementen uit respectievelijk $X$ en $Y$ bestaande uit de twee ware uitkomsten.
+Met andere woorden, als we ge\"{\i}nteresseerd zijn in beide kansruimtes tegelijk, dan kunnen we de gezamenlijke kansruimte goed karakteriseren
+door middel van een cartesisch product.
+Als de $X$ en $Y$ bovendien onafhankelijk zijn, is de kans van elk paar uitkomsten gemakkelijk uit te drukken in termen van de kansverdelingen van $X$
+en $Y$.
+
+\begin{definition}
+    Laat $X,Y$ twee onafhankelijke kansruimtes met verdelingen $P_X,P_Y$.
+    Dan vormt $X \times Y$ een nieuwe kansruimte met verdeling $P_{X \times Y}((x,y)) = P_X(x) \cdot P_Y(y)$.
+\end{definition}
 
 \begin{exercise}
 Wat is de kans om vier maal op een rij het getal 1 te gooien met een zeszijdige dobbelsteen?
 \end{exercise}
 
 \begin{exercise}
-    Bewijs Propositie~\ref{bayes}.
-\end{exercise}
-
-\begin{exercise}
-In een groep van 30 studenten, zeven hebben het huiswerk niet gemaakt. De docent kies willekeurig zes studenten.
-Wat is de kans dat tenminste vier van hen het huiswerk niet hebben gemaakt?
-\end{exercise}
-
-\begin{exercise}
-Er zitten 30 artikelen in een doos. Daarvan zijn er drie beschadigd.
-5 willekeurige artikelen worden uit de doos gehaald. Wat is de kans dat hoogstens twee daarvan beschadigd zijn?
+Student A, B en C willen willekeurig bepalen wie er bier gaat halen.
+Ze komen overeen een munt op te gooien om te bepalen welk van de drie deze taak op zich zal nemen.
+Ze hebben echter maar 1 munt met 2 zijden, terwijl ze met 3 personen zijn. Student C stelt het volgende voor. De munt moet herhaaldelijk worden opgegooid
+totdat 1 van de volgende situaties zich voordoet: als er op enig moment tweemaal achtereenvolgens munt boven komt dan wint student A, als tweemaal
+achtereenvolgens kop boven komt wint student B, en als er eenmaal kop boven komt en direct daarna munt boven komt dan wint student C. Doet student A er
+verstandig aan akkoord te gaan met het voorstel van student C, gegeven dat student A liever geen bier haalt?
 \end{exercise}
 
 
@@ -254,6 +272,11 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 \begin{proof}
     Het bewijs is een opgave voor de lezer.
 \end{proof}
+
+
+
+
+\chapter{Stochastische variabelen}
 
 
 \section{Functies op kansruimtes}
@@ -292,21 +315,8 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
 \end{proof}
 
 
-\section{Cartesisch product tussen kansruimtes}
+\section{Stochastische variabelen}
 
-
-\begin{exercise}
-Student A, B en C willen willekeurig bepalen wie er bier gaat halen.
-Ze komen overeen een munt op te gooien om te bepalen welk van de drie deze taak op zich zal nemen.
-Ze hebben echter maar 1 munt met 2 zijden, terwijl ze met 3 personen zijn. Student C stelt het volgende voor. De munt moet herhaaldelijk worden opgegooid
-totdat 1 van de volgende situaties zich voordoet: als er op enig moment tweemaal achtereenvolgens munt boven komt dan wint student A, als tweemaal
-achtereenvolgens kop boven komt wint student B, en als er eenmaal kop boven komt en direct daarna munt boven komt dan wint student C. Doet student A er
-verstandig aan akkoord te gaan met het voorstel van student C, gegeven dat student A liever geen bier haalt?
-\end{exercise}
-
-
-
-\chapter{Stochastische variabelen}
 Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we bepaalde numerieke eigenschappen uitrekenen.
 Een stochastische variabele is een kansruimte samen met een morfisme naar een deelverzameling van $\reals$.
 
@@ -337,14 +347,14 @@ Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen 
 
 \begin{definition}
     Laat $S = (\Omega,\varphi)$ een stochast.
-    Definieer \[ \sigma^2(S) = \sum_{x \in \Omega} (\varphi(x) - \mu(S))^2 \cdot P(x) \]
+    Definieer $ \sigma^2(S) = \sum_{x \in \Omega} {(\varphi(x) - \mu(S))}^2 \cdot P(x) $
     Dan heet $\sigma^2(S)$ de variantie van $S$.
 \end{definition}
 
 
 \begin{exercise}
     Laat $D = \set{1,2,3,4,5,6}$ de kansruimte van een zeszijdige dobbelsteen, met uniforme verdeling $P$.
-    Stel we hebben twee dobbelstenen van dit type, en we zijn geinteresseerd in het totaal aantal ogen na een worp met beide stenen.
+    Stel we hebben twee dobbelstenen van dit type, en we zijn ge\"{\i}nteresseerd in het totaal aantal ogen na een worp met beide stenen.
     \begin{enumerate}[a.]
     \item Laat zien hoe we de bijbehorende stochast kunnen construeren uit $D$ via een cartesisch product en een morfisme.
     \item Wat is de verwachte waarde van deze stochast?
