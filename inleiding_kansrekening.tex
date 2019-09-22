@@ -260,34 +260,34 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansruimte geconstrueerd worden.
 
 \begin{definition}[morfisme]\label{morfisme}
-    Laat $X$ een kansruimte met kansverdeling $P_X$, $Y$ een verzameling en $\phi : X \to Y$ een surjectieve functie.
-    De functie $\phi$ heet een \emph{morfisme} van $X$ naar $Y$.
+    Laat $X$ een kansruimte met kansverdeling $P_X$, $Y$ een verzameling en $\varphi : X \to Y$ een surjectieve functie.
+    De functie $\varphi$ heet een \emph{morfisme} van $X$ naar $Y$.
 
-    Omdat $\phi$ niet noodzakelijkerwijs injectief heeft deze niet altijd een inverse.
-    Echter, omdat $\phi$ surjectief is, kunnen we wel een pseudo-inverse defini\"eren die de elementen in $Y$ afbeeldt op de verzameling van alle originelen.
-    We defini\"eren daarom de pseudo-inverse van $\phi$, genoteerd met $\phi^{-1}$, als volgt.
-    Laat $\phi^{-1} : Y \to \powerset{X}$ waarbij $\phi^{-1}(y) = \set{x : \phi(X) = y}{x \in X}$.
+    Omdat $\varphi$ niet noodzakelijkerwijs injectief heeft deze niet altijd een inverse.
+    Echter, omdat $\varphi$ surjectief is, kunnen we wel een pseudo-inverse defini\"eren die de elementen in $Y$ afbeeldt op de verzameling van alle originelen.
+    We defini\"eren daarom de pseudo-inverse van $\varphi$, genoteerd met $\varphi^{-1}$, als volgt.
+    Laat $\varphi^{-1} : Y \to \powerset{X}$ waarbij $\varphi^{-1}(y) = \set{x : \varphi(X) = y}{x \in X}$.
 
-    Als $\phi$ bijectief is noemen we $\phi$ ook wel een \emph{isomorfisme}.
+    Als $\varphi$ bijectief is noemen we $\varphi$ ook wel een \emph{isomorfisme}.
     Als er een isomorfisme bestaat tussen twee kansruimtes $X$ en $Y$, dan noemen we $X$ en $Y$ isomorf.
 \end{definition}
 
 \begin{proposition}
-    Er geldt dat $Y$ uit Definitie~\ref{morfisme} via de morfisme $\phi$ opnieuw een kansruimte is, met een kansverdeling $P_Y(y) = P_X(\phi^{-1}(y))$.
+    Er geldt dat $Y$ uit Definitie~\ref{morfisme} via de morfisme $\varphi$ opnieuw een kansruimte is, met een kansverdeling $P_Y(y) = P_X(\varphi^{-1}(y))$.
 \end{proposition}
 \begin{proof}
     We moeten laten zien dat $P_Y$ aan de definitie van een kansverdeling voldoet.
 
     \begin{enumerate}[i]
-        \item Laat $y \in Y$. Dan geldt $P_Y(y) =  P_X(\phi^{-1}(y)) \geq 0$.
+        \item Laat $y \in Y$. Dan geldt $P_Y(y) =  P_X(\varphi^{-1}(y)) \geq 0$.
         \item Per definitie weten we dat
         \begin{align*}
             P_Y(Y) &= \sum_{y \in Y} P_Y(y) \\
-                   &= \sum_{y \in Y} P_X(\phi^{-1}(y)) \\
-                   &= \sum_{y \in Y} \sum_{x \in \phi^{-1}(y)} P_X(x) \\
+                   &= \sum_{y \in Y} P_X(\varphi^{-1}(y)) \\
+                   &= \sum_{y \in Y} \sum_{x \in \varphi^{-1}(y)} P_X(x) \\
         \end{align*}
-        Omdat $\phi$ een functie is weten we dat elk element uit $X$ precies eenmaal voorkomt in een zeker element uit het beeld van $\phi^{-1}$.
-        Dus \[ \sum_{y \in Y} \sum_{x \in \phi^{-1}(y)} P_X(x) = \sum_{x \in X} P_X(x) = P(X) = 1. \]
+        Omdat $\varphi$ een functie is weten we dat elk element uit $X$ precies eenmaal voorkomt in een zeker element uit het beeld van $\varphi^{-1}$.
+        Dus \[ \sum_{y \in Y} \sum_{x \in \varphi^{-1}(y)} P_X(x) = \sum_{x \in X} P_X(x) = P(X) = 1. \]
     \end{enumerate}
 \end{proof}
 
@@ -295,33 +295,32 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
 \section{Cartesisch product tussen kansruimtes}
 
 
-%\begin{exercise}
-%Student A, B en C doen een drankje in de stad, en moeten bepalen wie er bobt.
-%Ze komen overeen een munt op te gooien om te bepalen welk van de drie deze taak op zich zal nemen.
-%Ze hebben echter maar 1 munt met 2 zijden, terwijl ze met 3 personen zijn. Student C stelt het volgende voor. De munt moet herhaaldelijk worden opgegooid
-%totdat 1 van de volgende situaties zich voordoet: als er op enig moment tweemaal achtereenvolgens munt boven komt dan wint student A, als tweemaal
-%achtereenvolgens kop boven komt wint student B, en als er eenmaal kop boven komt en direct daarna munt boven komt dan wint student C. Doet student A er
-%verstandig aan akkoord te gaan met het voorstel van student C?
-%\end{exercise}
+\begin{exercise}
+Student A, B en C willen willekeurig bepalen wie er bier gaat halen.
+Ze komen overeen een munt op te gooien om te bepalen welk van de drie deze taak op zich zal nemen.
+Ze hebben echter maar 1 munt met 2 zijden, terwijl ze met 3 personen zijn. Student C stelt het volgende voor. De munt moet herhaaldelijk worden opgegooid
+totdat 1 van de volgende situaties zich voordoet: als er op enig moment tweemaal achtereenvolgens munt boven komt dan wint student A, als tweemaal
+achtereenvolgens kop boven komt wint student B, en als er eenmaal kop boven komt en direct daarna munt boven komt dan wint student C. Doet student A er
+verstandig aan akkoord te gaan met het voorstel van student C, gegeven dat student A liever geen bier haalt?
+\end{exercise}
 
 
-% TODO: maak alles eindig
 
 \chapter{Stochastische variabelen}
 Als de elementen van een kansruimte uit te drukken zijn in een getal, dan kunnen we bepaalde numerieke eigenschappen uitrekenen.
 Een stochastische variabele is een kansruimte samen met een morfisme naar een deelverzameling van $\reals$.
 
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$, en laat $X \subseteq \reals$ en $\phi : \Omega \to X$ een morfisme.
-    Dan heet het paar $(\Omega,\phi)$ een \emph{stochastische variabele}, of \emph{stochast}.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$, en laat $X \subseteq \reals$ en $\varphi : \Omega \to X$ een morfisme.
+    Dan heet het paar $(\Omega,\varphi)$ een \emph{stochastische variabele}, of \emph{stochast}.
 \end{definition}
 
-Omdat we de elementen van een stochast in getallen kunnen uitdrukken, kunnen spreken de `verwachte waarde' van een stochast.
-Dit is het gemiddelde van alle elementen, gewogen door kun kans.
+Omdat we de elementen van een stochast in getallen kunnen uitdrukken, kunnen we spreken de `verwachte waarde' van een stochast.
+Dit is het gemiddelde van alle elementen, gewogen met kun kans.
 
 \begin{definition}
-    Laat $S = (\Omega,\phi)$ een stochast.
-    Definieer \[ \mu(S) = \sum_{x \in \Omega} \phi(x) \cdot P(x). \]
+    Laat $S = (\Omega,\varphi)$ een stochast.
+    Definieer \[ \mu(S) = \sum_{x \in \Omega} \varphi(x) \cdot P(x). \]
     Dan heet $\mu(S)$ de verwachte waarde van $S$.
 \end{definition}
 
@@ -329,37 +328,30 @@ In andere literatuur wordt vaak het symbool $E$ gebruikt in plaats van $\mu$.
 We kunnen spreken over een standaard deviatie van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
 
 \begin{definition}
-    Laat $S = (\Omega,\phi)$ een stochast.
-    Definieer \[ \sigma(S) = \sum_{x \in \Omega} |\phi(x) - \mu(S)| \cdot P(x) \]
+    Laat $S = (\Omega,\varphi)$ een stochast.
+    Definieer \[ \sigma(S) = \sum_{x \in \Omega} |\varphi(x) - \mu(S)| \cdot P(x) \]
     Dan heet $\sigma(S)$ de standaard deviatie van $S$.
 \end{definition}
 
 Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie gebruikt.
 
 \begin{definition}
-    Laat $S = (\Omega,\phi)$ een stochast.
-    Definieer \[ \sigma^2(S) = \sum_{x \in \Omega} (\phi(x) - \mu(S))^2 \cdot P(x) \]
+    Laat $S = (\Omega,\varphi)$ een stochast.
+    Definieer \[ \sigma^2(S) = \sum_{x \in \Omega} (\varphi(x) - \mu(S))^2 \cdot P(x) \]
     Dan heet $\sigma^2(S)$ de variantie van $S$.
 \end{definition}
 
 
+\begin{exercise}
+    Laat $D = \set{1,2,3,4,5,6}$ de kansruimte van een zeszijdige dobbelsteen, met uniforme verdeling $P$.
+    Stel we hebben twee dobbelstenen van dit type, en we zijn geinteresseerd in het totaal aantal ogen na een worp met beide stenen.
+    \begin{enumerate}[a.]
+    \item Laat zien hoe we de bijbehorende stochast kunnen construeren uit $D$ via een cartesisch product en een morfisme.
+    \item Wat is de verwachte waarde van deze stochast?
+    \item Wat is de standaard afwijking van deze stochast?
+    \end{enumerate}
+\end{exercise}
 
-%\chapter{Specifieke kansruimtes}
-%We zullen kansruimtes beschouwen waarbij we extra eigenschappen van de kansruimte en de bijbehorende kansverdeling veronderstellen.
-%Bij het toepassen van kansrekening op concrete problemen, is er vaak meer bekend over kansverdelingen, zodat kennis van specifieke veelvoorkomende kansruimtes veel gebruikt kan worden.
 
-%Belangrijke verdelingen hebben een naam, zoals de Bernoulli verdeling en de binomiale verdeling.
-%
-%Bij een event A bestaande uit een opeenvolging van andere events, kunnen we A visualiseren door een boom diagram te tekenen.
-%Hierdoor kunnen we er intuitiever mee redeneren, zodat we vragen omtrent A makkelijker kunnen beantwoorden.
-%
-%Een willekeurige variabele is een kansruimte.
-%Men kan een (universele) kansruimte naar een andere kansruimte sturen via een functie.
-%Als een zekere kansruimte A 5 dobbelsteenworpen beschrijft, dan kunnen we een functie f: A->N definiëren die alle ogen optelt.
-%De resulterende kansruimte f(A) beschrijft dan het totaal aantal ogen.
-%
-%Een joint verdeling van kansruimtes A en B is het cartesisch product AxB.
-%Ook hierbij kunnen we verzamelingenleer nog steeds volledig gebruiken.
 \end{document}
-
 
