@@ -138,20 +138,23 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
 
 \section{Voorwaardelijke kans}
 Nu kunnen we de notie van voorwaardelijke kans invoeren.
-Hierbij beperken we de kansverdeling tot een zekere deelruimte.
-We kunnen dit interpreteren alsof we weten dat ware uitkomst in deze deelruimte zit.
+Hierbij beperken we de kansverdeling tot een zekere deelverzameling.
+We kunnen dit interpreteren alsof we weten dat ware uitkomst in deze deelverzameling zit.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelruimte.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A \subseteq \Omega$ een deelverzameling.
     Definieer $P(B|A) = P_A(B) = \frac{P(A \cap B)}{P(B)}$. Dit spreken we uit als `de kans van $B$ gegeven $A$'.
 \end{definition}
 
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelverzamelingen.
     Dan heten $A$ en $B$ onafhankelijk als $P(A|B) = P(A)$.
 \end{definition}
 
+Informeel kunnen we de onafhankelijkheid van een gebeurtenis $A$ ten opzichte van gebeurtenis $B$ interpreteren als dat het waar zijn van gebeurtenis $B$
+geen invloed heeft op de kans van $A$.
+
 \begin{proposition}[Productregel]
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelverzamelingen.
     Er geldt $P(A \cap B) = P(A)P(B)$ precies dan als $A$ en $B$ onafhankelijk zijn.
 \end{proposition}
 \begin{proof}
@@ -165,7 +168,7 @@ We kunnen dit interpreteren alsof we weten dat ware uitkomst in deze deelruimte 
 \end{proof}
 
 \begin{proposition}[De regel van Bayes]\label{bayes}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B \subseteq \Omega$ twee deelverzamelingen.
     Dan geldt $P(A|B) = \frac{P(B|A)P(A)}{P(B)}$.
 \end{proposition}
 \begin{proof}
@@ -201,16 +204,16 @@ Er zitten 30 artikelen in een doos. Daarvan zijn er drie beschadigd.
 \end{exercise}
 
 
-Het kan ook zo zijn dat twee deelruimtes onafhankelijk zijn als we ze beperken tot een zekere derde deelruimte.
+Het kan ook zo zijn dat twee deelverzamelingen onafhankelijk zijn als we ze beperken tot een zekere derde deelverzamelingen.
 Of met andere woorden, dat twee gebeurtenissen onafhankelijk zijn gegeven een derde gebeurtenis.
 Dit noemen we voorwaardelijke onafhankelijkheid.
 \begin{definition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelverzamelingen.
     Dan heten $A$ en $B$ onafhankelijk gegeven $C$ als $P(A|B \cap C) = P(A|C)$.
 \end{definition}
 
 \begin{proposition}
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $A,B,C \subseteq \Omega$ drie deelverzamelingen.
     Er geldt dat $P(A \cap B|C) = P(A|C)P(B|C)$ precies dan als $A$ en $B$ onafhankelijk zijn gegeven $C$.
 \end{proposition}
 \begin{proof}
@@ -257,7 +260,7 @@ verstandig aan akkoord te gaan met het voorstel van student C, gegeven dat stude
 We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimtes.
 
 \begin{proposition}[kettingregel]
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $(X_i), 0 \leq i \leq n$ een rij deelruimtes van $\Omega$.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $(X_i), 0 \leq i \leq n$ een rij deelverzamelingen van $\Omega$.
     Dan geldt $P(X_0 \cap \dots \cap X_n) = P(X_0|X_1 \cap \dots \cap X_n) \dots P(X_{n-1}|X_n)P(X_n)$.
 \end{proposition}
 \begin{proof}
@@ -265,7 +268,7 @@ We kunnen een aantal proposities generaliseren voor verzamelingen van kansruimte
 \end{proof}
 
 \begin{proposition}[marginale kans]
-    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $X \subseteq \Omega$ een deelruimtes.
+    Laat $\Omega$ een kansruimte met kansverdeling $P$ en $X \subseteq \Omega$ een deelverzamelingen.
     Laat bovendien $(Y_i), 0 \leq i \leq n$ een partitie van $\Omega$.
     Dan geldt $P(X) = \sum_{i=0}^n P(X \cap Y_i)$.
 \end{proposition}
@@ -359,6 +362,7 @@ Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen 
     \item Laat zien hoe we de bijbehorende stochast kunnen construeren uit $D$ via een cartesisch product en een morfisme.
     \item Wat is de verwachte waarde van deze stochast?
     \item Wat is de standaard afwijking van deze stochast?
+    \item Wat is de verwachte waarde gegeven dat de eerste dobbelsteenworp oneven is?
     \end{enumerate}
 \end{exercise}
 
