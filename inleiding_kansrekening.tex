@@ -354,6 +354,12 @@ Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen 
     Dan heet $\sigma^2(S)$ de variantie van $S$.
 \end{definition}
 
+Als de morfisme $\varphi$ van een stochast uit de context duidelijk is, wordt gemakshalve deze vaak weggelaten uit de notatie.
+Men doet dan alsof de elementen uit kansruimte zelf getallen zijn.
+De variantie voor een kansruimte $\Omega$ wordt dan bijvoorbeeld genoteerd met $ \sigma^2(\Omega) = \sum_{x \in \Omega} {(x - \mu(\Omega))}^2 \cdot P(x) $.
+Alhoewel dit incorrect is (immers kunnen verzamelingen niet meerdere keren
+hetzelfde element bevatten maar komen getallen vaak wel meer dan eens voor), geeft dit soms wel wat overzichtelijkheid in de formules, omdat deze dan
+korter worden. Het is echter van belang dat men zich altijd bewust is van de onderliggende morfisme.
 
 \begin{exercise}
     Laat $D = \set{1,2,3,4,5,6}$ de kansruimte van een zeszijdige dobbelsteen, met uniforme verdeling $P$.
@@ -366,6 +372,8 @@ Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen 
     \end{enumerate}
 \end{exercise}
 
+
+\section{Samenhang tussen stochastische variabelen}
 
 \end{document}
 
