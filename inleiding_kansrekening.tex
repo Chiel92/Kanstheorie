@@ -203,7 +203,6 @@ Er zitten 30 artikelen in een doos. Daarvan zijn er drie beschadigd.
 5 willekeurige artikelen worden uit de doos gehaald. Wat is de kans dat hoogstens twee daarvan beschadigd zijn?
 \end{exercise}
 
-
 Het kan ook zo zijn dat twee deelverzamelingen onafhankelijk zijn als we ze beperken tot een zekere derde deelverzamelingen.
 Of met andere woorden, dat twee gebeurtenissen onafhankelijk zijn gegeven een derde gebeurtenis.
 Dit noemen we voorwaardelijke onafhankelijkheid.
@@ -231,7 +230,7 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
 
 \section{Product tussen kansruimtes}
 Als we nu twee kansruimtes $A$ en $B$ hebben met elk hun eigen ware uitkomst, en we deze ruimtes tegelijk beschouwen, dan is er precies \'e\'en
-paar met elementen uit respectievelijk $A$ en $B$ bestaande uit de twee ware uitkomsten.
+combinatie van twee elementen uit respectievelijk $A$ en $B$ die de twee ware uitkomsten bevat.
 Met andere woorden, als we ge\"{\i}nteresseerd zijn in beide kansruimtes tegelijk, dan kunnen we de gezamenlijke kansruimte goed karakteriseren
 door middel van een cartesisch product.
 Als de $A$ en $B$ bovendien onafhankelijk zijn, is de kans van elk paar uitkomsten gemakkelijk uit te drukken in termen van de kansverdelingen van $A$
@@ -328,31 +327,44 @@ Dit is het gemiddelde van alle elementen, gewogen met kun kans.
 
 \begin{definition}
     Laat $X$ een stochast op $\Omega$.
-    Definieer \[ \mu(X) = \sum_{\omega \in \Omega} X(\omega) \cdot P(\omega). \]
-    Dan heet $\mu(X)$ de verwachte waarde van $X$.
+    Definieer \[ \mu_X = \sum_{\omega \in \Omega} X(\omega) \cdot P(\omega). \]
+    Dan heet $\mu_X$ de verwachte waarde van $X$.
 \end{definition}
 
 In andere literatuur wordt vaak het symbool $E$ gebruikt in plaats van $\mu$.
-We kunnen spreken over een standaard deviatie van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
+De verwachte waarde van $X$ wordt ook genoteerd met $\mu(X)$ of $\mu[X]$, afhankelijk van wat het meest leesbaar is.
 
-\begin{definition}
-    Laat $X$ een stochast op $\Omega$.
-    Definieer \[ \sigma(X) = \sum_{\omega \in \Omega} |X(\omega) - \mu(X)| \cdot P(\omega) \]
-    Dan heet $\sigma(X)$ de standaard deviatie van $X$.
-\end{definition}
-
-Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie gebruikt.
-
-\begin{definition}
-    Laat $X$ een stochast op $\Omega$.
-    Definieer $ \sigma^2(X) = \sum_{\omega \in \Omega} {(X(\omega) - \mu(X))}^2 \cdot P(\omega) $
-    Dan heet $\sigma^2(X)$ de variantie van $X$.
-\end{definition}
 
 Als de kansruimte van een stochast uit de context duidelijk is, wordt gemakshalve deze vaak weggelaten uit de notatie.
 Men doet dan alsof de stochast een soort variabele die waarden kan aannemen volgens een bepaalde kansverdeling.
 De stochast wordt dan in feite behandeld als de kansruimte die gevormd wordt door zijn codomein.
 Het is echter van belang dat men zich altijd bewust is van de onderliggende morfisme.
+
+
+We kunnen spreken over een standaard deviatie $sigma$ van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
+
+\begin{definition}
+    Laat $X$ een stochast op $\Omega$.
+    Definieer
+    \begin{align*}
+        \sigma_X &= \mu( |X - \mu_X| ) \\
+                  &= \sum_{\omega \in \Omega} |X(\omega) - \mu_X| \cdot P(\omega) \\
+    \end{align*}
+    Dan heet $\sigma_X$ de standaard deviatie van $X$.
+\end{definition}
+
+Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie
+$\sigma^2$ gebruikt.
+
+\begin{definition}
+    Laat $X$ een stochast op $\Omega$.
+    Definieer
+    \begin{align*}
+        \sigma^2_X &= \mu[ {(X - \mu_X)}^2 ] \\
+                    &= \sum_{\omega \in \Omega} {(X(\omega) - \mu_X)}^2 \cdot P(\omega) \\
+    \end{align*}
+    Dan heet $\sigma^2_X$ de variantie van $X$.
+\end{definition}
 
 \begin{exercise}
     Laat $D = \set{1,2,3,4,5,6}$ de kansruimte van een zeszijdige dobbelsteen, met uniforme verdeling $P$.
@@ -367,8 +379,30 @@ Het is echter van belang dat men zich altijd bewust is van de onderliggende morf
 
 
 \section{Samenhang tussen stochastische variabelen}
+Als we meerdere stochastische variabelen hebben, zijn we vaak geinteresseerd in de samenhang tussen deze variabelen.
+We willen dan graag weten hoeveel ze met elkaar te maken hebben, i.e.\ als de ene variabele klein is, of dat de kans be\"{\i}vloed dat de andere
+variabele ook klein is. We introduceren een aantal maten die vaak gebruikt worden bij het beschrijven van samenhang.
+
+\begin{definition}
+    Laat $X,Y$ twee stochasten op $\Omega$.
+    Definieer
+    \begin{align*}
+        \sigma_{XY} &= \mu[ (X - \mu_X)(Y - \mu_Y) ] \\
+                    &= \sum_{\omega \in \Omega} (X(\omega) - \mu_X) \cdot (Y(\omega) - \mu_Y) \cdot P(\omega) \\
+    \end{align*}
+    Dan heet $\sigma-{XY}$ de covariantie tussen $X$ en $Y$.
+\end{definition}
 
 
+
+\begin{definition}
+    Laat $X,Y$ twee stochasten op $\Omega$.
+    Definieer
+    \begin{align*}
+        \rho_{XY} &= \frac{\sigma_{XY}}{\sigma_X \sigma_Y} \\
+    \end{align*}
+    Dan heet $\rho_{XY}$ de \emph{Pearson product-moment c\"oefficient} tussen $X$ en $Y$, of gewoon \emph{correlatie co\"oefficient}.
+\end{definition}
 
 \chapter{Statistiek}
 
