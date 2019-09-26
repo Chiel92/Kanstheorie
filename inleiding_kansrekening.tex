@@ -385,13 +385,42 @@ $\sigma^2$ gebruikt.
 \begin{exercise}
     Laat $D = \set{1,2,3,4,5,6}$ de kansruimte van een zeszijdige dobbelsteen, met uniforme verdeling $P$.
     Stel we hebben twee dobbelstenen van dit type, en we zijn ge\"{\i}nteresseerd in het totaal aantal ogen na een worp met beide stenen.
+    Noem de stochast die het totaal aantal ogen beschrijft $X$.
     \begin{enumerate}[a.]
-    \item Laat zien hoe we de bijbehorende stochast kunnen construeren uit $D$ via een cartesisch product en een morfisme.
-    \item Wat is de verwachte waarde van deze stochast?
-    \item Wat is de standaard afwijking van deze stochast?
+    \item Laat zien hoe we $X$ kunnen construeren uit $D$ via een cartesisch product en een morfisme.
+    \item Geef de cumulatieve verdeling van $X$.
+    \item Wat is de verwachte waarde van $X$?
+    \item Wat is de standaard afwijking van $X$?
     \item Wat is de verwachte waarde gegeven dat de eerste dobbelsteenworp oneven is?
     \end{enumerate}
 \end{exercise}
+
+
+\section{Veelvoorkomende verdelingen}
+Wanneer een stochast twee mogelijke uitkomsten heeft, namelijk $0$ of $1$, dan neemt deze een zogeheten Bernoulli verdeling aan.
+
+\begin{definition}
+    Laat $X : \Omega \to \set{0,1}$ een stochast met verdeling
+    $P_X(1) = p$ en $P_X(0) = 1 - p$, voor zekere $0 < p < 1$.
+    Dan heet $P_X$ een \emph{Bernoulli verdeling} en heet $X$ \emph{Bernoulli verdeeld}.
+\end{definition}
+
+\begin{exercise}
+    Laat $X : \Omega \to \set{0,1}$ een Bernoulli verdeelde stochast.
+    Geef de verwachte waarde, variantie en standaard afwijking van $X$.
+\end{exercise}
+
+%\begin{definition}
+    %\emph{Binomiale verdeling}
+%\end{definition}
+
+%\begin{definition}
+    %\emph{Poisson verdeling}
+%\end{definition}
+
+%\begin{definition}
+    %\emph{Normale verdeling}
+%\end{definition}
 
 
 \section{Samenhang tussen stochastische variabelen}
@@ -432,27 +461,6 @@ variabele ook klein is. We introduceren een aantal maten die vaak gebruikt worde
     \end{enumerate}
 \end{exercise}
 
-\section{Veelvoorkomende verdelingen}
-Wanneer een stochast twee mogelijke uitkomsten heeft, namelijk $0$ of $1$, dan neemt deze een zogeheten Bernoulli verdeling aan.
-
-\begin{definition}
-    Laat $X : \Omega \to \set{0,1}$ een stochast met verdeling
-    $P_X(1) = p$ en $P_X(0) = 1 - p$, voor zekere $0 < p < 1$.
-    Dan heet $P_X$ een \emph{Bernoulli verdeling} en heet $X$ \emph{Bernoulli verdeeld}.
-\end{definition}
-
-\begin{exercise}
-    Laat $X : \Omega \to \set{0,1}$ een Bernoulli verdeelde stochast.
-    Geef de verwachte waarde, variantie en standaard afwijking van $X$.
-\end{exercise}
-
-\begin{definition}
-    \emph{Binomiale verdeling}
-\end{definition}
-
-\begin{definition}
-    \emph{Normale verdeling}
-\end{definition}
 
 \chapter{Statistiek}
 
