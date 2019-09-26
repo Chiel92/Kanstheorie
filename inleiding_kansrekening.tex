@@ -6,6 +6,7 @@
 \usepackage{amssymb,amsmath,amsthm,enumerate,graphicx,float,lmodern,xparse, mathtools}
 \usepackage[dutch]{babel}
 \usepackage{color}
+%\usepackage{hyperref}
 
 \title{Inleiding Eindige Kansrekening \\ \small{Opgebouwd vanuit de intu\"{\i}tieve verzamelingenleer}}
 \author{Ch.\ ten Brinke}
@@ -229,8 +230,8 @@ Dit noemen we voorwaardelijke onafhankelijkheid.
 
 
 \section{Product tussen kansruimtes}
-Als we nu twee kansruimtes $A$ en $B$ hebben met elk hun eigen ware uitkomst, en we deze ruimtes tegelijk beschouwen, dan is er precies \'e\'en
-combinatie van twee elementen uit respectievelijk $A$ en $B$ die de twee ware uitkomsten bevat.
+Als we nu twee kansruimtes $A$ en $B$ hebben, en we deze ruimtes tegelijk beschouwen, dan is elke
+combinatie van twee elementen uit respectievelijk $A$ en $B$ een mogelijke uitkomst.
 Met andere woorden, als we ge\"{\i}nteresseerd zijn in beide kansruimtes tegelijk, dan kunnen we de gezamenlijke kansruimte goed karakteriseren
 door middel van een cartesisch product.
 Als de $A$ en $B$ bovendien onafhankelijk zijn, is de kans van elk paar uitkomsten gemakkelijk uit te drukken in termen van de kansverdelingen van $A$
@@ -292,7 +293,7 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
     Als er een isomorfisme bestaat tussen twee kansruimtes $A$ en $B$, dan heten $A$ en $B$ isomorf.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{morfisme_codomein_kansruimte}
     Er geldt dat $B$ uit Definitie~\ref{morfisme} via de morfisme $\varphi$ opnieuw een kansruimte is,
     met een kansverdeling $P_B(b) = P_A(\set{a \in A}{\varphi(a) = b})$.
 \end{proposition}
@@ -321,6 +322,21 @@ Een stochastische variabele op een kansruimte is een morfisme naar een deelverza
     Laat $\Omega$ een kansruimte met kansverdeling $P$, en laat $S \subseteq \reals$ en $X : \Omega \to S$ een morfisme.
     Dan heet $X$ een \emph{stochastische variabele} op $\Omega$, of kortweg, \emph{stochast}.
 \end{definition}
+
+Merk op dat via Propositie~\ref{morfisme_codomein_kansruimte} de stochast $X$ van hierboven een nieuwe kansruimte induceert, namelijk $S$. Deze
+noteren we vaak met $P_X$, omdat we het codomein $S$ vaak geen expliciete naam geven.
+
+Een veelgebruikte manier om de kansverdeling van een stochast uit te drukken is de cumulatieve kansverdeling.
+\begin{definition}
+    Laat $X : \Omega \to S$ een stochast laat $P$ de kansverdeling van $\Omega$.
+    Definieer
+    \begin{align*}
+        F_X(x) &= P_X(\set{y \in S}{y \leq x}) \\
+               &= P(\set{\omega \in \Omega}{X(\omega) \leq x}) \\
+    \end{align*}
+    Dan heet $F_X$ de \emph{cumulatieve kansverdeling} van $X$.
+\end{definition}
+
 
 Omdat we de elementen van kansruimte via een stochast in getallen kunnen uitdrukken, kunnen we spreken van de `verwachte waarde' van een stochast.
 Dit is het gemiddelde van alle elementen, gewogen met kun kans.
@@ -416,8 +432,38 @@ variabele ook klein is. We introduceren een aantal maten die vaak gebruikt worde
     \end{enumerate}
 \end{exercise}
 
+\section{Veelvoorkomende verdelingen}
+Wanneer een stochast twee mogelijke uitkomsten heeft, namelijk $0$ of $1$, dan neemt deze een zogeheten Bernoulli verdeling aan.
+
+\begin{definition}
+    Laat $X : \Omega \to \set{0,1}$ een stochast met verdeling
+    $P_X(1) = p$ en $P_X(0) = 1 - p$, voor zekere $0 < p < 1$.
+    Dan heet $P_X$ een \emph{Bernoulli verdeling} en heet $X$ \emph{Bernoulli verdeeld}.
+\end{definition}
+
+\begin{exercise}
+    Laat $X : \Omega \to \set{0,1}$ een Bernoulli verdeelde stochast.
+    Geef de verwachte waarde, variantie en standaard afwijking van $X$.
+\end{exercise}
+
+\begin{definition}
+    \emph{Binomiale verdeling}
+\end{definition}
+
+\begin{definition}
+    \emph{Normale verdeling}
+\end{definition}
 
 \chapter{Statistiek}
+
+In de praktijk weten we vaak een kansverdeling van een kansruimte niet, terwijl we dat wel zouden willen.
+We kunnen dan een aantal metingen doen in de kansruimte die ons meer informatie zouden moeten verschaffen over de verdeling.
+Dit heet een \emph{steekproef}.
+Een waarneming uit een steekproef correspondeert dus met een specifieke uitkomst in een kansruimte.
+Hoe meer waarnemingen de steekproef bevat, hoe betrouwbaarder onze inzichten over de verdeling.
+Echter, het is niet altijd duidelijk hoeveel metingen je nodig hebt om betrouwbare informatie te krijgen.
+Het vakgebied wat deze vraag poogt te beantwoorden is \emph{statistiek}.
+
 
 \end{document}
 
