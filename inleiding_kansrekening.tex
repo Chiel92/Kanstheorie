@@ -93,7 +93,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     \begin{align*}
         P(A \cup B)     &= \sum_{\omega \in A \cup B} P(\omega) & \text{definitie kansverdeling}\\
                         &= \sum_{\omega \in A} P(\omega) + \sum_{\omega \in B} P(\omega) - \sum_{\omega \in A \cap B} P(\omega) \\
-                        &= P(A) + P(B) - P(A \cap B) \\
+                        &= P(A) + P(B) - P(A \cap B)
     \end{align*}
 \end{proof}
 
@@ -106,7 +106,7 @@ Hieronder volgen een aantal handige resultaten, die direct met de definitie te b
     \begin{align*}
         P(A)    &= P( (A - A \cap B) \cup (A \cap B) ) \\
                 &= P(A - A \cap B ) + P(A \cap B) & \text{somregel} \\
-                &= P(A - B) + P(A \cap B) \\
+                &= P(A - B) + P(A \cap B)
     \end{align*}
     dus $P(A - B) = P(A) - P(A \cap B) $.
 \end{proof}
@@ -305,7 +305,7 @@ Gegeven een kansruimte en een functie op die kansruimte, kan er een nieuwe kansr
         \item Per definitie weten we dat
         \begin{align*}
             P_B(B) &= \sum_{b \in B} P_B(b) \\
-                   &= \sum_{b \in B} P_A(\set{a \in A}{\varphi(a) = b}) \\
+                   &= \sum_{b \in B} P_A(\set{a \in A}{\varphi(a) = b})
         \end{align*}
         Omdat $\varphi$ een surjectieve functie is weten we dat elk element uit $A$ precies eenmaal voorkomt in bovenstaande sommatie.
         Dus \[ \sum_{b \in B} P_A(\set{a \in A}{\varphi(a) = b}) = \sum_{a \in A} P_A(a) = P(A) = 1. \]
@@ -324,15 +324,23 @@ Een stochastische variabele op een kansruimte is een morfisme naar een deelverza
 \end{definition}
 
 Merk op dat via Propositie~\ref{morfisme_codomein_kansruimte} de stochast $X$ van hierboven een nieuwe kansruimte induceert, namelijk $S$. Deze
-noteren we vaak met $P_X$, omdat we het codomein $S$ vaak geen expliciete naam geven.
+noteren we met $P_X$, omdat we het codomein $S$ vaak geen expliciete naam geven.
 
-Een veelgebruikte manier om de kansverdeling van een stochast uit te drukken is de cumulatieve kansverdeling.
+Als de kansruimte van een stochast uit de context duidelijk is, laat men deze gemakshalve vaak weg uit de notatie.
+Men doet dan alsof de stochast een soort variabele die waarden kan aannemen volgens een bepaalde kansverdeling.
+De uitdrukking $P_X(x)$ wordt daarom ook wel geschreven als $P(X=x)$.
+De stochast wordt dan in feite behandeld als de kansruimte die gevormd wordt door zijn codomein, maar dan met een variabele-achtige notatie.
+Om redeneerfouten te voorkomen is het echter altijd van belang dat men zich bewust is van de onderliggende kansruimte van een stochast.
+Verder gebruikt men de standaard rekenkundige symbolen voor het aanduiden van afgeleide stochasten. Voor twee stochasten $X$ en $Y$ is $X+Y$ dan de
+stochast gegeven door $Z(\omega) = X(\omega) + Y(\omega)$.
+
+Een veelgebruikte alternatieve manier om de kansverdeling van een stochast uit te drukken is de cumulatieve kansverdeling.
 \begin{definition}
     Laat $X : \Omega \to S$ een stochast laat $P$ de kansverdeling van $\Omega$.
     Definieer
     \begin{align*}
         F_X(x) &= P_X(\set{y \in S}{y \leq x}) \\
-               &= P(\set{\omega \in \Omega}{X(\omega) \leq x}) \\
+               &= P(\set{\omega \in \Omega}{X(\omega) \leq x})
     \end{align*}
     Dan heet $F_X$ de \emph{cumulatieve kansverdeling} van $X$.
 \end{definition}
@@ -350,37 +358,50 @@ Dit is het gemiddelde van alle elementen, gewogen met kun kans.
 In andere literatuur wordt vaak het symbool $E$ gebruikt in plaats van $\mu$.
 De verwachte waarde van $X$ wordt ook genoteerd met $\mu(X)$ of $\mu[X]$, afhankelijk van wat het meest leesbaar is.
 
-
-Als de kansruimte van een stochast uit de context duidelijk is, wordt gemakshalve deze vaak weggelaten uit de notatie.
-Men doet dan alsof de stochast een soort variabele die waarden kan aannemen volgens een bepaalde kansverdeling.
-De stochast wordt dan in feite behandeld als de kansruimte die gevormd wordt door zijn codomein.
-Het is echter van belang dat men zich altijd bewust is van de onderliggende morfisme.
-
-
-We kunnen spreken over een standaard deviatie $sigma$ van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
+We kunnen spreken over een gemiddelde absolute afwijking $sigma$ van een stochast. Dit is te interpreteren als de verwachte afwijking van de verwachte waarde.
 
 \begin{definition}
     Laat $X$ een stochast op $\Omega$.
-    Definieer
+    Dan heet de volgende uitdrukking de \emph{gemiddelde absolute afwijking} van $X$.
     \begin{align*}
-        \sigma_X &= \mu( |X - \mu_X| ) \\
-                  &= \sum_{\omega \in \Omega} |X(\omega) - \mu_X| \cdot P(\omega) \\
+        \mu( |X - \mu_X| ) = & \sum_{\omega \in \Omega} |X(\omega) - \mu_X| \cdot P(\omega)
     \end{align*}
-    Dan heet $\sigma_X$ de standaard deviatie van $X$.
 \end{definition}
 
-Omdat de standaard deviatie in de praktijk onhandige algebraische eigenschappen heeft, wordt in plaats van standaard deviatie vaak variantie
-$\sigma^2$ gebruikt.
+Omdat de gemiddelde absolute afwijking in de praktijk onhandige eigenschappen heeft, wordt in plaats van gemiddelde absolute afwijking vaak de
+variantie $\sigma^2$ gebruikt.
 
 \begin{definition}
     Laat $X$ een stochast op $\Omega$.
     Definieer
     \begin{align*}
         \sigma^2_X &= \mu[ {(X - \mu_X)}^2 ] \\
-                    &= \sum_{\omega \in \Omega} {(X(\omega) - \mu_X)}^2 \cdot P(\omega) \\
+                   &= \sum_{\omega \in \Omega} {(X(\omega) - \mu_X)}^2 \cdot P(\omega)
     \end{align*}
     Dan heet $\sigma^2_X$ de variantie van $X$.
 \end{definition}
+
+De variantie is voor mensen meestal een lastig te interpreteren getal. Daarom gebruikt men vaak de standaard afwijking in plaats van variantie.
+
+\begin{definition}
+    Laat $X$ een stochast op $\Omega$.
+    Definieer
+    \begin{align*}
+        \sigma_X &= \sqrt{\sigma^2_X} \\
+                 &= \sqrt{\sum_{\omega \in \Omega} {(X(\omega) - \mu_X)}^2 \cdot P(\omega)}
+    \end{align*}
+    Dan heet $\sigma_X$ de \emph{standaard afwijking} van $X$.
+\end{definition}
+
+
+\begin{proposition}\label{stochast_somregel}
+    Gegeven twee stochasten $X$ en $Y$.
+    Dan geldt $\mu_{X+Y} = \mu_X + \mu_Y$ en $\sigma^2_{X+Y} = \sigma^2_X + \sigma^2_Y$.
+\end{proposition}
+\begin{proof}
+    Het bewijs is een opgave voor de lezer.
+\end{proof}
+
 
 \begin{exercise}
     Laat $D = \set{1,2,3,4,5,6}$ de kansruimte van een zeszijdige dobbelsteen, met uniforme verdeling $P$.
@@ -389,30 +410,47 @@ $\sigma^2$ gebruikt.
     \begin{enumerate}[a.]
     \item Laat zien hoe we $X$ kunnen construeren uit $D$ via een cartesisch product en een morfisme.
     \item Geef de cumulatieve verdeling van $X$.
+    \item Wat is de verwachte absolute afwijking van $X$?
     \item Wat is de verwachte waarde van $X$?
     \item Wat is de standaard afwijking van $X$?
     \item Wat is de verwachte waarde gegeven dat de eerste dobbelsteenworp oneven is?
     \end{enumerate}
 \end{exercise}
 
+\begin{exercise}
+    Bewijs Propositie~\ref{stochast_somregel}.
+\end{exercise}
 
 \section{Veelvoorkomende verdelingen}
 Wanneer een stochast twee mogelijke uitkomsten heeft, namelijk $0$ of $1$, dan neemt deze een zogeheten Bernoulli verdeling aan.
+Informeel noemt met het geval $1$ een succes, en $0$ een mislukking.
 
 \begin{definition}
     Laat $X : \Omega \to \set{0,1}$ een stochast met verdeling
     $P_X(1) = p$ en $P_X(0) = 1 - p$, voor zekere $0 < p < 1$.
-    Dan heet $P_X$ een \emph{Bernoulli verdeling} en heet $X$ \emph{Bernoulli verdeeld}.
+    Dan heet $P_X$ een \emph{Bernoulli verdeling} met succeskans $p$.
 \end{definition}
 
 \begin{exercise}
-    Laat $X : \Omega \to \set{0,1}$ een Bernoulli verdeelde stochast.
-    Geef de verwachte waarde, variantie en standaard afwijking van $X$.
+    Laat $X : \Omega \to \set{0,1}$ een Bernoulli-verdeelde stochast.
+    Geef de cumulatieve verdeling, verwachte waarde, variantie en standaard afwijking van $X$.
 \end{exercise}
 
-%\begin{definition}
-    %\emph{Binomiale verdeling}
-%\end{definition}
+Wanneer we een serie onafhankelijke kansruimtes beschouwen met op elke kansruimte een Bernoulli-verdeelde stochast met dezelfde vaste succeskans,
+dan vormt de som van alle stochasten opnieuw een stochast, die de zogeheten Binomiale verdeling aanneemt.
+
+\begin{definition}
+    Laat $\Omega_1, \dots, \Omega_n$ een rij onafhankelijke kansruimtes.
+    Laat voor elke $0 \leq i \leq n$ een Bernoulli-verdeelde stochast $X_i : \Omega_i \to \set{0,1}$ met vaste parameter $p$.
+    Definieer $Y : \Omega_1 \times \cdots \times \Omega_n \to \set{0, \dots, n}$ als een stochast die de som van alle $X_i$ beschrijft,
+    i.e.\ $Y((\omega_1, \dots, \omega_n)) = X(\omega_1) + \cdots + X_n(\omega_n)$.
+    Dan heet $P_Y$ een \emph{binomiale verdeling} met $n$ pogingen en succeskans $p$.
+\end{definition}
+
+\begin{exercise}
+    Laat $X : \Omega \to \set{0,n}$ een binomiaal-verdeelde stochast met succeskans $p$.
+    Geef de cumulatieve verdeling, verwachte waarde, variantie en standaard afwijking van $X$.
+\end{exercise}
 
 %\begin{definition}
     %\emph{Poisson verdeling}
@@ -433,7 +471,7 @@ variabele ook klein is. We introduceren een aantal maten die vaak gebruikt worde
     Definieer
     \begin{align*}
         \sigma_{XY} &= \mu[ (X - \mu_X)(Y - \mu_Y) ] \\
-                    &= \sum_{\omega \in \Omega} (X(\omega) - \mu_X) \cdot (Y(\omega) - \mu_Y) \cdot P(\omega) \\
+                    &= \sum_{\omega \in \Omega} (X(\omega) - \mu_X) \cdot (Y(\omega) - \mu_Y) \cdot P(\omega)
     \end{align*}
     Dan heet $\sigma-{XY}$ de covariantie tussen $X$ en $Y$.
 \end{definition}
@@ -442,7 +480,7 @@ variabele ook klein is. We introduceren een aantal maten die vaak gebruikt worde
     Laat $X,Y$ twee stochasten op $\Omega$.
     Definieer
     \begin{align*}
-        \rho_{XY} &= \frac{\sigma_{XY}}{\sigma_X \sigma_Y} \\
+        \rho_{XY} &= \frac{\sigma_{XY}}{\sigma_X \sigma_Y}
     \end{align*}
     Dan heet $\rho_{XY}$ de \emph{Pearson product-moment c\"oefficient} tussen $X$ en $Y$, of gewoon \emph{correlatie co\"oefficient}.
 \end{definition}
